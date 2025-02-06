@@ -1,0 +1,2 @@
+C:\Users\vasja\source\repos\ServiceStaff\servicestaff.client\obj\Debug\servicestaff.client.esproj.CoreCompileInputs.cache
+C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\servicestaff.client\obj\Debug\servicestaff.client.esproj.CoreCompileInputs.cache
