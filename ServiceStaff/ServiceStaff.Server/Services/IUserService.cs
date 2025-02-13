@@ -7,5 +7,6 @@ namespace ServiceStaff.Server.Services
     {
         Task<string> RegisterAsync(RegisterDto registerDto);
         Task<string> LoginAsync(LoginDto loginDto);
+        bool UserExists(string username);
     }
 }

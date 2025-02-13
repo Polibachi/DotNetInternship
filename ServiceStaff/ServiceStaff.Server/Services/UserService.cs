@@ -29,6 +29,10 @@ namespace ServiceStaff.Server.Services
             var token = GenerateJwtToken(user);
             return token;
         }
+        public bool UserExists(string username)
+        {
+            return _users.Any(u => u.Username == username);
+        }
 
         private string GenerateJwtToken(User user)
         {

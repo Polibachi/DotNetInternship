@@ -20,6 +20,10 @@ namespace ServiceStaff.Server.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
+            if (_userService.UserExists(registerDto.Username))
+            {
+                return Conflict(new { message = "Username already exists" });
+            }
             var result = await _userService.RegisterAsync(registerDto);
             return Ok(result);
         }

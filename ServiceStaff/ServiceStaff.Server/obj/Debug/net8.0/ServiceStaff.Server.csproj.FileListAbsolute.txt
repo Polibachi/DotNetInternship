@@ -68,3 +68,13 @@ C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\ob
 C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\obj\Debug\net8.0\ServiceStaff.Server.pdb
 C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\obj\Debug\net8.0\ServiceStaff.Server.genruntimeconfig.cache
 C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\obj\Debug\net8.0\ref\ServiceStaff.Server.dll
+C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
+C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\vasja\source\repos\DotNetInternship\ServiceStaff\ServiceStaff.Server\obj\Debug\net8.0\ServiceStaff.Server.sourcelink.json
