@@ -1,0 +1,7 @@
+<ul>
+  <li *ngFor="let order of order">
+    {{ order.name }} - {{ order.status }}
+    <button *ngIf="order.status !== 'Готово'" (click)="markReady()">Готово</button>
+
+  </li>
+</ul>
