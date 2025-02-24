@@ -4,40 +4,57 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ServiceStaff.Server.DTO;
 using ServiceStaff.Server.Models;
+using ServiceStaff.Server.Data;
 
 namespace ServiceStaff.Server.Services
 {
     public class UserService : IUserService
     {
-        private readonly List<User> _users = new List<User>();
+        private readonly AppDbContext _context;
+
+        public UserService(AppDbContext context)
+        {
+            _context = context;
+        }
 
         public async Task<string> RegisterAsync(RegisterDto registerDto)
         {
-            var user = new User { Username = registerDto.Username, Password = registerDto.Password };
-            _users.Add(user);
+            var user = new User
+            {
+                Email = registerDto.Username,
+                Password = registerDto.Password,
+                Name = registerDto.Name,
+                Role = registerDto.Role
+            };
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
             return "User registered successfully";
         }
 
         public async Task<string> LoginAsync(LoginDto loginDto)
         {
-            var user = _users.FirstOrDefault(u => u.Username == loginDto.Username && u.Password == loginDto.Password);
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == loginDto.Username && u.Password == loginDto.Password);
             if (user == null) return "Invalid credentials";
 
             var token = GenerateJwtToken(user);
             return token;
         }
+
         public bool UserExists(string username)
         {
-            return _users.Any(u => u.Username == username);
+            return _context.Users.Any(u => u.Email == username);
         }
 
         private string GenerateJwtToken(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("your_secret_key_here");
+            var key = Encoding.ASCII.GetBytes("kluch_yakiy_bude_dostatnyo_dovhim");
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
@@ -49,3 +66,4 @@ namespace ServiceStaff.Server.Services
         }
     }
 }
+
