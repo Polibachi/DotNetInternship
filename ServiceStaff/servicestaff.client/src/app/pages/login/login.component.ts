@@ -4,13 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  standalone: true,
+  standalone: true,  // ✅ Standalone-компонент
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [CommonModule, FormsModule] // Додано FormsModule
+  imports: [CommonModule, FormsModule]  // ✅ Додаємо необхідні модулі
 })
-
 export class LoginComponent {
   username: string = '';
   password: string = '';

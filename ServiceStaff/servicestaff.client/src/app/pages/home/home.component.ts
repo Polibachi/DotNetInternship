@@ -4,12 +4,9 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
   imports: [CommonModule, RouterModule]
 })
-export class AppComponent {
-  title = 'servicestaff.client';
-}
-
+export class HomeComponent { }
