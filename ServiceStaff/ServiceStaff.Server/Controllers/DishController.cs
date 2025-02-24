@@ -20,4 +20,15 @@ public class DishController : ControllerBase
         var result = await _dishService.AddDishAsync(dishDto);
         return Ok(result);
     }
+
+    [HttpGet("{dishId}")]
+    public async Task<IActionResult> GetDishById(int dishId)
+    {
+        var dish = await _dishService.GetDishByIdAsync(dishId);
+        if (dish == null)
+        {
+            return NotFound($"Dish with ID {dishId} not found");
+        }
+        return Ok(dish);
+    }
 }

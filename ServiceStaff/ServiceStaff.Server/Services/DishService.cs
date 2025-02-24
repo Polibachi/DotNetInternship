@@ -27,5 +27,21 @@ namespace ServiceStaff.Server.Services
             await _context.SaveChangesAsync();
             return "Dish added successfully";
         }
+
+        public async Task<DishDto> GetDishByIdAsync(int dishId)
+        {
+            var dish = await _context.Dishes.FindAsync(dishId);
+            if (dish == null)
+            {
+                return null;
+            }
+
+            return new DishDto
+            {
+                Name = dish.Name,
+                Price = dish.Price,
+                Description = dish.Description
+            };
+        }
     }
 }
