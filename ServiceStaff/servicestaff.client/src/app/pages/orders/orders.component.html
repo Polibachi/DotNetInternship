@@ -1,0 +1,7 @@
+<div class="orders-container">
+  <h2>Замовлення</h2>
+  <input type="text" placeholder="Назва страви" [(ngModel)]="newDish">
+  <button (click)="addOrder()">Додати</button>
+
+  <app-order-list [orders]="orders"></app-order-list>
+</div>
