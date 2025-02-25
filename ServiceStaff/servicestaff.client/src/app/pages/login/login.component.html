@@ -1,6 +1,23 @@
 <div class="login-container">
   <h2>Вхід у систему</h2>
-  <input type="text" placeholder="Логін" [(ngModel)]="username">
-  <input type="password" placeholder="Пароль" [(ngModel)]="password">
-  <button (click)="login()">Увійти</button>
+  <form (ngSubmit)="login()">
+    <label for="username">Логін:</label>
+    <input type="text" id="username" [(ngModel)]="username" name="username" required>
+
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" [(ngModel)]="password" name="password" required>
+
+    <label for="role">Роль:</label>
+    <select id="role" [(ngModel)]="role" name="role" required>
+      <option value="">Оберіть роль</option>
+      <option value="staff">Офіціант</option>
+      <option value="chef">Шеф-кухар</option>
+      <option value="admin">Адміністратор</option>
+    </select>
+
+    <button type="submit">Увійти</button>
+
+    <!-- Повідомлення про помилку -->
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </form>
 </div>

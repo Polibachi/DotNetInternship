@@ -20,12 +20,12 @@ namespace ServiceStaff.Server.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
-            if (_userService.UserExists(registerDto.Username))
+            if (_userService.UserExists(registerDto.Email))  // ✅ Перевіряємо Email
             {
-                return Conflict(new { message = "Username already exists" });
+                return Conflict(new { message = "Email already exists" });
             }
             var result = await _userService.RegisterAsync(registerDto);
-            return Ok(result);
+            return Ok(new { message = result });
         }
 
         [HttpPost("login")]

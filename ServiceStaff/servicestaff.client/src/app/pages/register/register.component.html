@@ -1,21 +1,29 @@
 <div class="register-container">
   <h2>Реєстрація</h2>
-  <form (ngSubmit)="onSubmit()">
-    <label for="username">Username:</label>
-    <input type="text" id="username" [(ngModel)]="user.username" name="username" required />
+  <form #registerForm="ngForm" (ngSubmit)="register()">
 
-    <label for="password">Password:</label>
+    <label for="email">Email:</label>
+    <input type="text" id="email" [(ngModel)]="user.email" name="email" required />
+    <div *ngIf="registerForm.submitted && !user.email" class="error">Введіть Email</div>
+
+    <label for="password">Пароль:</label>
     <input type="password" id="password" [(ngModel)]="user.password" name="password" required />
+    <div *ngIf="registerForm.submitted && !user.password" class="error">Введіть пароль</div>
 
-    <label for="name">Name:</label>
+    <label for="name">Ім'я:</label>
     <input type="text" id="name" [(ngModel)]="user.name" name="name" required />
+    <div *ngIf="registerForm.submitted && !user.name" class="error">Введіть ім'я</div>
 
-    <label for="role">Role:</label>
-    <select id="role" [(ngModel)]="user.role" name="role">
-      <option value="staff">Staff</option>
-      <option value="admin">Admin</option>
+    <label for="role">Роль:</label>
+    <select id="role" [(ngModel)]="user.role" name="role" required>
+      <option value="">Оберіть роль</option>
+      <option value="staff">Офіціант</option>
+      <option value="chef">Кухар</option>
+      <option value="admin">Адміністратор</option>
     </select>
+    <div *ngIf="registerForm.submitted && !user.role" class="error">Оберіть роль</div>
 
     <button type="submit">Зареєструватися</button>
+
   </form>
 </div>

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ServiceStaff.Server.Data;
@@ -20,12 +20,24 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IDishService, DishService>();
 
 
-// ������ DbContext � DI ���������
+// Додаємо DbContext в DI контейнер
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200") // ⚠️ Дозволяємо Angular-клієнту
+                  .AllowAnyMethod()                     // Дозволяємо всі методи (GET, POST, PUT, DELETE)
+                  .AllowAnyHeader()                     // Дозволяємо будь-які заголовки
+                  .AllowCredentials()                   // Дозволяємо кукі/токени
+                  .SetIsOriginAllowed(origin => true);  // ✅ Дозволяє будь-які origin
+        });
+});
 
-// ���������� ������������ JWT
+// Добавляємо конфігурацію JWT
 var key = Encoding.ASCII.GetBytes("your_secret_key_here");
 builder.Services.AddAuthentication(x =>
 {
@@ -48,7 +60,6 @@ builder.Services.AddAuthentication(x =>
 var app = builder.Build();
 
 app.UseDefaultFiles();
-app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -57,9 +68,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors("AllowAngularApp");
 
-// ������ ��������������
+// Додаємо аутентифікацію
 app.UseAuthentication();
 
 app.UseAuthorization();

@@ -25,7 +25,7 @@ namespace ServiceStaff.Server.Services
         {
             var user = new User
             {
-                Email = registerDto.Username,
+                Email = registerDto.Email,
                 Password = registerDto.Password,
                 Name = registerDto.Name,
                 Role = registerDto.Role
@@ -46,10 +46,11 @@ namespace ServiceStaff.Server.Services
             return token;
         }
 
-        public bool UserExists(string username)
+        public bool UserExists(string email)
         {
-            return _context.Users.Any(u => u.Email == username);
+            return _context.Users.Any(u => u.Email == email);  // ✅ Перевіряємо Email замість Username
         }
+
 
         private string GenerateJwtToken(User user)
         {
