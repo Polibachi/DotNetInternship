@@ -39,7 +39,8 @@ namespace ServiceStaff.Server.Services
         public async Task<string> LoginAsync(LoginDto loginDto)
         {
             var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Email == loginDto.Username && u.Password == loginDto.Password);
+                .FirstOrDefaultAsync(u => u.Email == loginDto.Email && u.Password == loginDto.Password);
+
             if (user == null) return "Invalid credentials";
 
             var token = GenerateJwtToken(user);

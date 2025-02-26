@@ -12,14 +12,16 @@ import { OrderItemComponent } from './pages/order-item/order-item.component';
 import { AuthGuard } from './guards/auth.guard'; // ✅ Імпортуємо Guard
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' }, // ✅ Правильне перенаправлення
+  { path: 'home', component: HomeComponent }, // ✅ Додаємо home
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] }, // 🔒 Захищені сторінки залишаються
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
   { path: 'kitchen', component: KitchenComponent, canActivate: [AuthGuard] },
   { path: 'order-list', component: OrderListComponent, canActivate: [AuthGuard] },
   { path: 'order-item', component: OrderItemComponent, canActivate: [AuthGuard] }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
