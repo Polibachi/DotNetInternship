@@ -1,11 +1,7 @@
 ﻿using ServiceStaff.Server.Services;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using ServiceStaff.Server.Hubs;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ServiceStaff.Server
@@ -24,6 +20,9 @@ namespace ServiceStaff.Server
             services.AddControllers();
             services.AddScoped<IUserService, UserService>();
 
+            // Додаємо SignalR
+            services.AddSignalR();
+
             var key = Encoding.ASCII.GetBytes("your_secret_key_here");
             services.AddAuthentication(x =>
             {
@@ -41,9 +40,25 @@ namespace ServiceStaff.Server
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
+
+                // Додаємо підтримку SignalR WebSocket з токеном
+                x.Events = new JwtBearerEvents
+                {
+                    OnMessageReceived = context =>
+                    {
+                        var accessToken = context.Request.Query["access_token"];
+                        var path = context.HttpContext.Request.Path;
+                        if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs/orders"))
+                        {
+                            context.Token = accessToken;
+                        }
+                        return Task.CompletedTask;
+                    }
+                };
             });
         }
-            public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -57,6 +72,9 @@ namespace ServiceStaff.Server
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                // Додаємо маршрут для SignalR хабу
+                endpoints.MapHub<OrderNotificationHub>("/orders");
             });
         }
     }
