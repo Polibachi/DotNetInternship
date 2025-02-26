@@ -9,14 +9,16 @@ import { KitchenComponent } from './pages/kitchen/kitchen.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import { OrderItemComponent } from './pages/order-item/order-item.component';
 
+import { AuthGuard } from './guards/auth.guard'; // ✅ Імпортуємо Guard
+
 const routes: Routes = [
-  { path: '', component: HomeComponent },  // Головна сторінка
-  { path: 'login', component: LoginComponent },  // Сторінка логіну
-  { path: 'register', component: RegisterComponent },  // Сторінка реєстрації
-  { path: 'orders', component: OrdersComponent },  // Замовлення
-  { path: 'kitchen', component: KitchenComponent },  // Кухня
-  { path: 'order-list', component: OrderListComponent },  // Список замовлень
-  { path: 'order-item', component: OrderItemComponent }  // Окремий елемент замовлення
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] }, // 🔒 Захищені сторінки залишаються
+  { path: 'kitchen', component: KitchenComponent, canActivate: [AuthGuard] },
+  { path: 'order-list', component: OrderListComponent, canActivate: [AuthGuard] },
+  { path: 'order-item', component: OrderItemComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
