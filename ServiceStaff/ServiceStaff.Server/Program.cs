@@ -2,8 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ServiceStaff.Server.Data;
+using ServiceStaff.Server.Hubs;
 using ServiceStaff.Server.Services;
 using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +59,8 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -68,8 +72,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowAngularApp");
+app.UseCors("AllowAngular");
 
+app.MapHub<OrderNotificationHub>("/orderHub");
 // Додаємо аутентифікацію
 app.UseAuthentication();
 
