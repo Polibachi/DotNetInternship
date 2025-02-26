@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using ServiceStaff.Server.Data;
 using ServiceStaff.Server.DTO;
@@ -34,10 +33,6 @@ namespace ServiceStaff.Server.Services
             await _context.SaveChangesAsync();
             return "Order created successfully";
         }
-
-        // await _hubContext.Clients.User(order.CookId).SendAsync("ReceiveNotification", $"Нове замовлення #{order.Id}!");
-        // надсилання сповіщень
-
 
         public async Task<string> CompleteOrderAsync(int orderId)
         {
