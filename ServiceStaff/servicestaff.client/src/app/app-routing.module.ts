@@ -8,6 +8,7 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { KitchenComponent } from './pages/kitchen/kitchen.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import { OrderItemComponent } from './pages/order-item/order-item.component';
+import { MenuComponent } from './pages/menu/menu.component'; // Додаємо імпорт MenuComponent
 
 const routes: Routes = [
   { path: '', component: HomeComponent },  // Головна сторінка
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'orders', component: OrdersComponent },  // Замовлення
   { path: 'kitchen', component: KitchenComponent },  // Кухня
   { path: 'order-list', component: OrderListComponent },  // Список замовлень
-  { path: 'order-item', component: OrderItemComponent }  // Окремий елемент замовлення
+  { path: 'order-item', component: OrderItemComponent },  // Окремий елемент замовлення
+  { path: 'menu', component: MenuComponent }  // Додаємо маршрут для меню
 ];
 
 @NgModule({
