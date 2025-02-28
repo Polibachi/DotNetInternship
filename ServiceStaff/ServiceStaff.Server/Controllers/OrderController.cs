@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.SignalR;
 using ServiceStaff.Server.Services;
 using ServiceStaff.Server.DTO;
 using ServiceStaff.Server.Hubs;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -18,6 +19,7 @@ public class OrderController : ControllerBase
         _hubContext = hubContext;
     }
 
+    [Authorize]
     [HttpPost("create")]
     public async Task<IActionResult> CreateOrder([FromBody] OrderDto orderDto)
     {
@@ -32,6 +34,7 @@ public class OrderController : ControllerBase
         return Ok(result);
     }
 
+    [Authorize]
     [HttpPut("complete/{orderId}")]
     public async Task<IActionResult> CompleteOrder(int orderId)
     {

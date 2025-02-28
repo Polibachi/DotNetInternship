@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using ServiceStaff.Server.DTO;
 using ServiceStaff.Server.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ServiceStaff.Server.Controllers
 {
@@ -17,6 +18,7 @@ namespace ServiceStaff.Server.Controllers
             _userService = userService;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
@@ -28,6 +30,7 @@ namespace ServiceStaff.Server.Controllers
             return Ok(new { message = result });
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
