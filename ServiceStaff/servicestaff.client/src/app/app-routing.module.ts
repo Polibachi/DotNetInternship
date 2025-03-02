@@ -10,9 +10,8 @@ import { OrderListComponent } from './pages/order-list/order-list.component';
 import { OrderItemComponent } from './pages/order-item/order-item.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 
-import { AuthGuard } from './guards/auth.guard'; // ✅ Імпортуємо Guard
-
 const routes: Routes = [
+KAN-19-token
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // ✅ Правильне перенаправлення
   { path: 'home', component: HomeComponent }, // ✅ Додаємо home
   { path: 'login', component: LoginComponent },
