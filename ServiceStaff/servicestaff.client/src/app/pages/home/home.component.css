@@ -1,94 +1,120 @@
-/* Загальні стилі */
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
+.header {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.no-select {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Контейнер для карток */
+.dishes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Гнучкі колонки */
+  max-width: 1280px; /* Максимальна ширина контейнера */
+  margin: 0 auto; /* Центруємо */
+  gap: 12px; /* Відступ між картками */
+  padding: 20px;
+  justify-content: center;
+}
+
+/* Обмеження кількості карток у рядку */
+@media (min-width: 1200px) {
+  .dishes-container {
+    grid-template-columns: repeat(4, 1fr); /* 4 картки в ряд */
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 900px) {
+  .dishes-container {
+    grid-template-columns: repeat(3, 1fr); /* 3 картки в ряд */
+  }
+}
+
+@media (max-width: 899px) and (min-width: 600px) {
+  .dishes-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 картки в ряд */
+  }
+}
+
+@media (max-width: 599px) {
+  .dishes-container {
+    grid-template-columns: repeat(1, 1fr); /* 1 картка в ряд */
+  }
+}
+
+/* Стилі для карток */
+.example-card {
+  max-width: 100%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
 }
 
-/* Головний контейнер */
-.welcome-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background: linear-gradient(to right, #4facfe, #00f2fe); /* Блакитно-фіолетовий градієнт */
-  color: white;
-  text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
+  /* Анімація при наведенні */
+  .example-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.15);
+  }
 
-/* Заголовок */
-h1 {
-  font-size: 3.5rem;
+/* Заголовок картки */
+mat-card-title {
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 10px;
-  letter-spacing: 2px;
+  color: #333;
+  margin-bottom: 8px;
 }
 
 /* Опис */
-p {
-  font-size: 1.3rem;
-  margin-bottom: 30px;
+mat-card-content p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+  margin-bottom: 10px;
 }
 
-/* Контейнер для кнопок */
-.buttons {
-  display: flex;
-  gap: 20px;
-}
-
-/* Кнопки */
-.btn {
-  text-decoration: none;
-  color: black;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 15px 30px;
-  border-radius: 8px;
-  font-size: 1.2rem;
+/* Блок ціни */
+mat-card-subtitle {
+  font-size: 16px;
   font-weight: bold;
-  transition: all 0.3s ease-in-out;
+  color: #ff5722;
+  display: block;
+  text-align: center;
+  margin-bottom: auto;
+  padding-top: 10px;
+}
+
+/* Дії */
+mat-card-actions {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 2px solid transparent;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
+  justify-content: center;
+  padding: 10px;
+  margin-top: auto;
 }
 
-  .btn:hover {
-    background: rgba(255, 255, 255, 1);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+  /* Кнопка */
+  mat-card-actions button {
+    font-weight: bold;
+    background: #4facfe;
+    color: white;
+    border-radius: 8px;
+    padding: 10px 20px;
+    transition: background 0.3s;
+    width: 90%;
   }
 
-  /* Іконки */
-  .btn img {
-    width: 24px;
-    height: 24px;
-  }
-
-/* Адаптивність */
-@media (max-width: 768px) {
-  .welcome-container {
-    padding: 20px;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-  }
-
-  p {
-    font-size: 1rem;
-  }
-
-  .buttons {
-    flex-direction: column;
-  }
-
-  .btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
+    mat-card-actions button:hover {
+      background: #00c2fe;
+    }

@@ -9,9 +9,10 @@ import { KitchenComponent } from './pages/kitchen/kitchen.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import { OrderItemComponent } from './pages/order-item/order-item.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
-
+import { AuthGuard } from './guards/auth.guard'; // ✅ Імпортуємо Guard
+import { MenuComponent } from './pages/menu/menu.component'; // Додаємо імпорт MenuComponent
 const routes: Routes = [
-KAN-19-token
+
   { path: '', redirectTo: 'home', pathMatch: 'full' }, // ✅ Правильне перенаправлення
   { path: 'home', component: HomeComponent }, // ✅ Додаємо home
   { path: 'login', component: LoginComponent },
@@ -20,7 +21,8 @@ KAN-19-token
   { path: 'kitchen', component: KitchenComponent, canActivate: [AuthGuard] },
   { path: 'order-list', component: OrderListComponent, canActivate: [AuthGuard] },
   { path: 'order-item', component: OrderItemComponent, canActivate: [AuthGuard] },
-  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] }
+  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },
+  { path: 'menu', component: MenuComponent }  // Додаємо маршрут для меню
 ];
 
 
