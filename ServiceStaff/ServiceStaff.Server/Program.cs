@@ -2,8 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ServiceStaff.Server.Data;
+using ServiceStaff.Server.Hubs;
 using ServiceStaff.Server.Services;
 using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +14,33 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        Description = "Введіть 'Bearer {токен}' без лапок",
+        Name = "Authorization",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] {}
+        }
+    });
+});
+
 
 
 builder.Services.AddScoped<IUserService, UserService>();
@@ -38,7 +66,7 @@ builder.Services.AddCors(options =>
 });
 
 // Добавляємо конфігурацію JWT
-var key = Encoding.ASCII.GetBytes("your_secret_key_here");
+var key = Encoding.ASCII.GetBytes("kluch_yakiy_bude_dostatnyo_dovhim");
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -57,6 +85,8 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -68,8 +98,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowAngularApp");
+app.UseCors("AllowAngular");
 
+app.MapHub<OrderNotificationHub>("/orderHub");
 // Додаємо аутентифікацію
 app.UseAuthentication();
 

@@ -8,16 +8,21 @@ import { OrdersComponent } from './pages/orders/orders.component';
 import { KitchenComponent } from './pages/kitchen/kitchen.component';
 import { OrderListComponent } from './pages/order-list/order-list.component';
 import { OrderItemComponent } from './pages/order-item/order-item.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },  // Головна сторінка
-  { path: 'login', component: LoginComponent },  // Сторінка логіну
-  { path: 'register', component: RegisterComponent },  // Сторінка реєстрації
-  { path: 'orders', component: OrdersComponent },  // Замовлення
-  { path: 'kitchen', component: KitchenComponent },  // Кухня
-  { path: 'order-list', component: OrderListComponent },  // Список замовлень
-  { path: 'order-item', component: OrderItemComponent }  // Окремий елемент замовлення
+KAN-19-token
+  { path: '', redirectTo: 'home', pathMatch: 'full' }, // ✅ Правильне перенаправлення
+  { path: 'home', component: HomeComponent }, // ✅ Додаємо home
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
+  { path: 'kitchen', component: KitchenComponent, canActivate: [AuthGuard] },
+  { path: 'order-list', component: OrderListComponent, canActivate: [AuthGuard] },
+  { path: 'order-item', component: OrderItemComponent, canActivate: [AuthGuard] },
+  { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

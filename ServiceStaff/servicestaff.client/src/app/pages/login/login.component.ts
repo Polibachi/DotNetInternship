@@ -12,18 +12,18 @@ import { AuthService } from '../../services/auth.service';
   imports: [CommonModule, FormsModule]
 })
 export class LoginComponent {
-  username: string = '';
+  email: string = '';  // ✅ Замінено username → email
   password: string = '';
-  role: string = ''; // ✅ Додаємо змінну для select
+  role: string = '';
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
   login() {
     const credentials = {
-      username: this.username,
+      email: this.email,  // ✅ Передаємо email замість username
       password: this.password,
-      role: this.role // ✅ Передаємо роль
+      role: this.role
     };
 
     this.authService.login(credentials).subscribe({
@@ -32,7 +32,6 @@ export class LoginComponent {
         localStorage.setItem('token', res.token);
         localStorage.setItem('role', res.role);
 
-        // ✅ Розподіл за роллю
         switch (res.role) {
           case 'staff':
             this.router.navigate(['/orders']);
@@ -50,7 +49,7 @@ export class LoginComponent {
       },
       error: (err) => {
         console.error('Login failed', err);
-        this.errorMessage = 'Неправильний логін або пароль';
+        this.errorMessage = 'Неправильний email або пароль';
       }
     });
   }
