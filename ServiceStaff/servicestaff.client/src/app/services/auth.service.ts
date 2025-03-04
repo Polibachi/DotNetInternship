@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = '/api/auth'; // ✅ Використовуємо проксі
+  private apiUrl = '/api/auth';
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +23,27 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+    const token = localStorage.getItem('token');
+    if (!token) return false;
+
+    try {
+      const decodedToken: any = jwtDecode(token);
+      return decodedToken.exp * 1000 > Date.now(); // Перевіряємо, чи не прострочений токен
+    } catch (error) {
+      return false;
+    }
+  }
+
+  getUserRole(): string | null {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    try {
+      const decodedToken: any = jwtDecode(token);
+      return decodedToken.role || null; // Беремо роль з токена
+    } catch (error) {
+      return null;
+    }
   }
 
   private handleError(error: HttpErrorResponse) {

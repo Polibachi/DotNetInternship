@@ -3,36 +3,42 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { RouterModule } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, RouterModule]
 })
 export class LoginComponent {
-  email: string = '';  // ✅ Замінено username → email
+  email: string = '';
   password: string = '';
-  role: string = '';
+  role: string = ''; // ✅ Додаємо role
+
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
   login() {
     const credentials = {
-      email: this.email,  // ✅ Передаємо email замість username
+      email: this.email,
       password: this.password,
-      role: this.role
+      role: this.role  // ✅ Передаємо роль
     };
 
     this.authService.login(credentials).subscribe({
       next: (res) => {
         console.log('Login successful:', res);
         localStorage.setItem('token', res.token);
-        localStorage.setItem('role', res.role);
+        const decodedToken: any = jwtDecode(res.token);
+        console.log('Розкодований токен:', decodedToken);
 
-        switch (res.role) {
+        localStorage.setItem('role', decodedToken.role); // ✅ Витягуємо роль із токена
+
+        switch (decodedToken.role) {
           case 'staff':
             this.router.navigate(['/orders']);
             break;

@@ -1,0 +1,86 @@
+.header {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.no-select {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Контейнер для карток */
+.dishes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Адаптивні колонки */
+  gap: 12px; /* Менший відступ між картками */
+  padding: 20px;
+  justify-content: center;
+}
+
+/* Стилі для карток */
+.example-card {
+  max-width: 380px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  padding-bottom: 10px; /* Відступ для всього вмісту */
+}
+
+  /* Анімація при наведенні */
+  .example-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.15);
+  }
+
+/* Заголовок картки */
+mat-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* Опис */
+mat-card-content p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+/* Блок ціни */
+mat-card-subtitle {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ff5722;
+  display: block;
+  text-align: center; /* Центрування ціни */
+  margin-bottom: 10px; /* Відступ перед кнопкою */
+}
+
+/* Дії */
+mat-card-actions {
+  display: flex;
+  justify-content: center; /* Центрування кнопки */
+  padding: 10px;
+}
+
+  /* Кнопка */
+  mat-card-actions button {
+    font-weight: bold;
+    background: #4facfe;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 16px;
+    transition: background 0.3s;
+  }
+
+    mat-card-actions button:hover {
+      background: #00c2fe;
+    }
