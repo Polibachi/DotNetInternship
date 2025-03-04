@@ -54,11 +54,17 @@ namespace ServiceStaff.Server.Services
                 OrderStatus.InProgress => "у процесі виконання",
                 OrderStatus.Completed => "виконане",
                 OrderStatus.Canceled => "скасоване",
+                OrderStatus.Paid => "оплачено",
                 _ => "оновлене"
             };
 
-            await _hubContext.Clients.All.SendAsync("ReceiveNotification",
-                $"Замовлення #{orderId} тепер {statusMessage}!");
+            await _hubContext.Clients.All.SendAsync("ReceiveNotification", new
+            {
+                Id = orderId,
+                Status = statusMessage,
+                Message = $"Замовлення #{orderId} {statusMessage}!"
+            });
+
 
             return $"Order {orderId} status updated to {newStatus}";
         }
@@ -118,6 +124,14 @@ namespace ServiceStaff.Server.Services
                 }).ToList()
             };
         }
+
+        public async Task<IEnumerable<Order>> GetOrdersByStatusAsync(OrderStatus status)
+        {
+            return await _context.Orders
+                .Where(o => o.Status == status)
+                .ToListAsync();
+        }
+
 
         // 1. Кількість замовлень кожної страви
         public async Task<Dictionary<string, int>> GetDishOrderCountsAsync()

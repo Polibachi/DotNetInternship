@@ -65,6 +65,12 @@ public class OrderController : ControllerBase
         return Ok();
     }
 
+    [HttpGet("status/{status}")]
+    public async Task<ActionResult<IEnumerable<Order>>> GetOrdersByStatus(OrderStatus status)
+    {
+        var orders = await _orderService.GetOrdersByStatusAsync(status);
+        return Ok(orders);
+    }
 
 
     [Authorize]

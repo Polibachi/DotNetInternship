@@ -7,7 +7,8 @@ namespace ServiceStaff.Server.Models
         Pending = 0,    // Прийнятий
         InProgress = 1, // Виконується
         Completed = 2,  // Виконаний
-        Canceled = 3    // Скасований
+        Paid = 3,    // Оплачений
+        Canceled = 4    // Скасований
     }
 
 

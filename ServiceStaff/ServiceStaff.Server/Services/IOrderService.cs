@@ -9,6 +9,7 @@ namespace ServiceStaff.Server.Services
         Task<string> UpdateOrderStatusAsync(int orderId, OrderStatus newStatus);
         Task<OrderDto> GetOrderByIdAsync(int orderId);
         Task<Order> EditOrderAsync(int orderId, OrderUpdateDto updatedOrder);
+        Task<IEnumerable<Order>> GetOrdersByStatusAsync(OrderStatus status);
 
         //Рофлофункції
         Task<Dictionary<string, int>> GetDishOrderCountsAsync(); // Кількість замовлень кожної страви

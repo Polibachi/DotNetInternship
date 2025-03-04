@@ -45,6 +45,8 @@ export class SignalrService {
   }
 
   public showNotification(message: string) {  // ✅ Було private → стало public
+    console.log("New notification!");
+    console.log(message);
     if (this.allowedRoutes.includes(this.currentRoute)) { // ✅ Перевірка маршруту
       this.snackBar.open(message, 'Закрити', {
         duration: 5000,
