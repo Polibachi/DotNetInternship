@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Додати страву</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Назва</mat-label>
+    <input matInput [(ngModel)]="dish.name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Ціна</mat-label>
+    <input matInput type="number" [(ngModel)]="dish.price">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Опис</mat-label>
+    <textarea matInput [(ngModel)]="dish.description"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Скасувати</button>
+  <button mat-raised-button color="primary" (click)="addDish()">Додати</button>
+</mat-dialog-actions>
