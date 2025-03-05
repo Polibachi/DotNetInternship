@@ -9,9 +9,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { Component, OnInit } from '@angular/core';
 import { DishService } from '../../services/dish.service';
 import { CommonModule } from '@angular/common';
-
-
-
+import { HttpClient } from '@angular/common/http';
+interface Dish {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+}
 
 @Component({
   selector: 'app-menu',
@@ -29,14 +33,20 @@ import { CommonModule } from '@angular/common';
     MatButtonModule
   ] // Додайте цей модуль
 })
+
 export class MenuComponent implements OnInit {
-  dishes: any[] = [];
+  dishes: Dish[] = [];
 
-  constructor(private dishService: DishService) { }
+  constructor(private http: HttpClient) { }
 
-  ngOnInit(): void {
-    this.dishService.getDishes().subscribe((data) => {
-      this.dishes = data;
-    });
+  ngOnInit() {
+    this.http.get<Dish[]>('https://localhost:7155/api/Dish/all')
+      .subscribe((data) => {
+        this.dishes = data;
+      });
+  }
+
+  getDishImage(id: number): string {
+    return `assets/images/dishes/${id}.jpeg`;
   }
 }

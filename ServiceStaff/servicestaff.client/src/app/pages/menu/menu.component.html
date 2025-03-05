@@ -28,21 +28,20 @@
 
 <body>
   <div class="dishes-container">
-    <mat-card *ngFor="let dish of dishes" class="example-card" appearance="outlined">
+    <mat-card class="dish-card" *ngFor="let dish of dishes">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{ dish.name }}</mat-card-title>
       </mat-card-header>
-
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="{{ dish.name }}">
+     
+      <img mat-card-image [src]="getDishImage(dish.id)" alt="{{ dish.name }}">
       <mat-card-content>
         <p>{{ dish.description }}</p>
       </mat-card-content>
+      <mat-card-subtitle>{{ dish.price }} UAH</mat-card-subtitle>
       <mat-card-actions>
         <button mat-button>Додати до замовлення</button>
       </mat-card-actions>
-      <mat-card-subtitle>{{ dish.price }} UAH</mat-card-subtitle>
-
     </mat-card>
   </div>
+
 </body>

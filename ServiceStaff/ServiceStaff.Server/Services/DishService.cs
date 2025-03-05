@@ -49,6 +49,7 @@ namespace ServiceStaff.Server.Services
 
             return dishes.Select(dish => new DishDto
             {
+                Id = dish.Id,
                 Name = dish.Name,
                 Price = dish.Price,
                 Description = dish.Description
