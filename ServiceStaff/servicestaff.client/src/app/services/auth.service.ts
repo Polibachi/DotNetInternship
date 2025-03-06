@@ -46,6 +46,10 @@ export class AuthService {
     }
   }
 
+  getToken(): string {
+    return localStorage.getItem('token') || '';
+  }
+
   private handleError(error: HttpErrorResponse) {
     console.error('❌ API Error:', error);
     return throwError(() => new Error(error.message || 'Server error'));
