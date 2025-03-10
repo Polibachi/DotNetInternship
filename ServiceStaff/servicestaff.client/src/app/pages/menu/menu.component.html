@@ -28,21 +28,39 @@
 
 <body>
   <div class="dishes-container">
-    <mat-card *ngFor="let dish of dishes" class="example-card" appearance="outlined">
+    <mat-card class="dish-card" *ngFor="let dish of dishes">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{ dish.name }}</mat-card-title>
       </mat-card-header>
 
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="{{ dish.name }}">
+      <img mat-card-image [src]="getDishImage(dish.id)" alt="{{ dish.name }}">
       <mat-card-content>
         <p>{{ dish.description }}</p>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Додати до замовлення</button>
-      </mat-card-actions>
       <mat-card-subtitle>{{ dish.price }} UAH</mat-card-subtitle>
-
+      <mat-card-actions>
+        <button mat-button> <mat-icon>add</mat-icon>Додати до замовлення</button>
+      </mat-card-actions>
     </mat-card>
+
+
+    <mat-card class="dish-card add-dish-icon">
+      <mat-card-header>
+        <mat-card-title>Додати страву</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>Додайте нову страву до меню</p>
+        <p>Назва фото: {{ getLastDishIdPlusOne() }}.jpeg</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="openAddDishDialog()">
+          <mat-icon>add</mat-icon> Додати страву
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
   </div>
+    
+
 </body>
