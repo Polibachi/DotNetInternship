@@ -1,6 +1,26 @@
+.orders-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: auto;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.button-container button {
+  margin-right: 10px; /* Змінюй значення за потреби */
+}
+
+
+button {
+  margin-right: 10px;
+}
+
 .custom-snackbar {
-  background-color: #323232 !important; /* Темний фон */
-  color: white !important; /* Білий текст */
+  background-color: #323232 !important;
+  color: white !important;
   font-size: 16px !important;
   text-align: center;
 }

@@ -1,7 +1,22 @@
-<div class="orders-container">
+<mat-card class="orders-container">
   <h2>Замовлення</h2>
-  <input type="text" placeholder="Назва страви" [(ngModel)]="newDish">
-  <button (click)="addOrder()">Додати</button>
+  <mat-form-field>
+    <input matInput placeholder="Номер столу" type="number" [(ngModel)]="newOrder.tableNumber">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Страва ID" type="number" #dishId>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Кількість" type="number" #quantity>
+  </mat-form-field>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="addOrderItem(dishId.value, quantity.value)">Додати страву</button>
+    <button mat-raised-button color="accent" (click)="addOrder()">Додати замовлення</button>
+  </div>
+
+
+
 
   <app-order-list [orders]="orders"></app-order-list>
-</div>
+</mat-card>
