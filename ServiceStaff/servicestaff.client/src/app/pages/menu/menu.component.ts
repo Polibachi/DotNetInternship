@@ -1,10 +1,9 @@
-
 import { MatMenuModule } from '@angular/material/menu'; // Додайте цей імпорт
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ChangeDetectionStrategy,  } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Component, OnInit } from '@angular/core';
 import { DishService } from '../../services/dish.service';
@@ -12,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AddDishDialogComponent } from '../add-dish-dialog/add-dish-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+
 interface Dish {
   id: number;
   name: string;
@@ -33,16 +33,22 @@ interface Dish {
     MatToolbarModule,
     MatCardModule,
     MatButtonModule
-  ] // Додайте цей модуль
+  ]
 })
-
 export class MenuComponent implements OnInit {
   dishes: Dish[] = [];
+  cart: { dishId: number; quantity: number }[] = [];
 
   constructor(private dishService: DishService, private dialog: MatDialog, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loadDishes();
+    this.loadCart();
+  }
+
+  // Завантажуємо корзину з localStorage
+  loadCart() {
+    this.cart = JSON.parse(localStorage.getItem('cart') || '[]');
   }
 
   loadDishes(): void {
@@ -51,9 +57,10 @@ export class MenuComponent implements OnInit {
     });
   }
 
+
   openAddDishDialog(): void {
     const dialogRef = this.dialog.open(AddDishDialogComponent, {
-      width: '800px', // Оптимізований розмір
+      width: '800px',
       height: '600px'
     });
 
@@ -63,14 +70,31 @@ export class MenuComponent implements OnInit {
       }
     });
   }
-  // Додаємо властивість для відображення останнього ID + 1
+
   getLastDishIdPlusOne(): number {
     const lastDish = this.dishes[this.dishes.length - 1];
-    return lastDish ? lastDish.id + 1 : 1; // Якщо страви є, додаємо 1 до останнього ID, якщо немає, то виводимо 1
+    return lastDish ? lastDish.id + 1 : 1;
   }
 
   getDishImage(id: number): string {
     return `assets/images/dishes/${id}.jpeg`;
   }
-}
 
+  // Функція для додавання страви до корзини
+  addToCart(dishId: number) {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+    let existingItem = cart.find((item: any) => item.dishId === dishId);
+
+    if (existingItem) {
+      existingItem.quantity++;
+    } else {
+      cart.push({ dishId: dishId, quantity: 1 });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.loadCart();
+  }
+
+
+}

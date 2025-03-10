@@ -32,4 +32,9 @@ export class DishService {
 
     return this.http.post(`${this.apiUrl}/add`, dish, { headers });
   }
+
+  getDishById(id: number): Observable<Dish> {
+    return this.http.get<Dish>(`${this.apiUrl}/${id}`);
+  }
+
 }

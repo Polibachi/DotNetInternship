@@ -1,45 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DishService } from '../../services/dish.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
-  selector: 'app-dish-dialog',
-  templateUrl: './dish-dialog.component.html',
-  styleUrls: ['./dish-dialog.component.css']
+  selector: 'app-add-dish-dialog',
+  templateUrl: './add-dish-dialog.component.html',
+  imports: [
+    MatDialogModule,
+    FormsModule,
+    MatFormFieldModule,
+    CommonModule,
+    FormsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+
+  ],
 })
-export class DishDialogComponent {
-  dish = { name: '', price: null, description: '' };
-  dishes: any[] = []; // Масив для зберігання страв
+export class AddDishDialogComponent {
+  dish = { id: 0, name: '', price: 0, description: '' };
+  public token: string | null = localStorage.getItem('token');
 
-  constructor(private dialogRef: any) { }
 
-  // Метод для отримання останнього ID + 1
-  getLastDishIdPlusOne() {
-    const lastDish = this.dishes[this.dishes.length - 1];
-    return lastDish ? lastDish.id + 1 : 1;
-  }
+  constructor(
+    private dishService: DishService,
+    public dialogRef: MatDialogRef<AddDishDialogComponent>
+  ) { }
 
-  // Метод для додавання страви
-  addDish() {
-    // Перевірка на заповненість усіх полів
-    if (this.dish.name && this.dish.price && this.dish.description) {
-      // Додаємо нову страву в масив
-      this.dishes.push({
-        id: this.getLastDishIdPlusOne(),
-        name: this.dish.name,
-        price: this.dish.price,
-        description: this.dish.description
-      });
-
-      // Закриваємо діалогове вікно після додавання
-      this.dialogRef.close();
-
-      // Очищаємо форму (можна пропустити, якщо не потрібно)
-      this.dish = { name: '', price: null, description: '' };
-
-      // Якщо потрібно перезавантажити сторінку:
-      window.location.reload(); // Перезавантажуємо сторінку
-    } else {
-      // Якщо не всі поля заповнені, показуємо попередження
-      alert('Будь ласка, заповніть всі поля!');
-    }
+  addDish(): void {
+    console.log(this.token);
+    this.dishService.addDish(this.dish, this.token).subscribe(() => {
+      this.dialogRef.close(true); // Закриваємо вікно та оновлюємо список
+    });
   }
 }

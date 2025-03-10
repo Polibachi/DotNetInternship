@@ -24,3 +24,146 @@ button {
   font-size: 16px !important;
   text-align: center;
 }
+
+.header {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.no-select {
+  cursor: pointer;
+  user-select: none;
+}
+/* Задаємо однакові відступи зліва і справа для картки "Додати страву" */
+.add-dish-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 320px;
+  height: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff;
+  text-align: center;
+  margin-left: 16px; /* Відступ зліва */
+  margin-right: 16px; /* Відступ справа */
+}
+
+/* Тепер для всіх карток встановимо однакову висоту */
+.dish-card, .add-dish-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 320px;
+  height: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 16px;
+  background: #fff;
+  text-align: center;
+}
+
+/* Зменшуємо відстань між картками */
+.dishes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px; /* Зменшили відстань між картками */
+  padding: 20px 40px;
+  justify-content: center;
+}
+
+/* Фіксована висота заголовка */
+mat-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+/* Фіксована висота картинки */
+.dish-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+mat-card-content {
+  flex-grow: 1;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  padding: 10px 0;
+}
+
+mat-card-subtitle {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+  mat-card-actions button {
+    width: 100%;
+    max-width: 180px;
+    font-weight: bold;
+    padding: 10px;
+  }
+
+.add-dish-icon mat-card-header {
+  padding-bottom: 0;
+}
+
+.add-dish-icon mat-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  height: auto; /* Вилучено фіксовану висоту */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.add-dish-icon mat-card-content {
+  flex-grow: 1;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.add-dish-icon mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+  .add-dish-icon mat-card-actions button {
+    width: 100%;
+    max-width: 180px;
+    font-weight: bold;
+    padding: 10px;
+  }
+
+.add-dish-icon button mat-icon {
+  font-size: 24px;
+  margin-right: 8px;
+}

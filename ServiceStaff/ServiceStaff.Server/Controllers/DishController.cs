@@ -21,7 +21,7 @@ public class DishController : ControllerBase
         return Ok(result);
     }
 
-    [Authorize]
+    [AllowAnonymous]
     [HttpGet("{dishId}")]
     public async Task<IActionResult> GetDishById(int dishId)
     {

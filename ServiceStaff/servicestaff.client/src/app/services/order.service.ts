@@ -27,7 +27,7 @@ export class OrderService {
     return this.http.get<Order[]>(this.apiUrl, { headers: this.getHeaders() });
   }
 
-  getOrdersByStatus(status: string): Observable<Order[]> {
+  getOrdersByStatus(status: Number): Observable<Order[]> {
     return this.http.get<Order[]>(`${this.apiUrl}/status/${status}`, { headers: this.getHeaders() });
   }
 
