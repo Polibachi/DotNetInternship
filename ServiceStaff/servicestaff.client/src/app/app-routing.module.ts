@@ -11,6 +11,7 @@ import { OrderItemComponent } from './pages/order-item/order-item.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { AuthGuard } from './guards/auth.guard';
+import { WaiterComponent } from './pages/waiter/waiter.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'orders', component: OrdersComponent, /*canActivate: [AuthGuard], data: { roles: ['staff'] }*/ },
   { path: 'kitchen', component: KitchenComponent, /*canActivate: [AuthGuard], data: { roles: ['chef'] }*/ },
+  { path: 'waiter', component: WaiterComponent },
   { path: 'order-list', component: OrderListComponent, canActivate: [AuthGuard] },
   { path: 'order-item', component: OrderItemComponent, canActivate: [AuthGuard] },
   { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },

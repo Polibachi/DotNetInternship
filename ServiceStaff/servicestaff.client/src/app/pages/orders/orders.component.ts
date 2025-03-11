@@ -11,13 +11,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { OrderListComponent } from '../order-list/order-list.component';
 
-
 @Component({
   selector: 'app-orders',
   standalone: true,
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css'],
-  imports: [CommonModule, FormsModule, MatInputModule, MatButtonModule, MatCardModule, OrderListComponent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    OrderListComponent
+  ]
 })
 export class OrdersComponent implements OnInit {
   orderItems = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -25,11 +31,16 @@ export class OrdersComponent implements OnInit {
   dishes: Dish[] = [];
   totalPrice = 0;
   newOrder: Order = { id: 0, tableNumber: 0, createdAt: new Date(), orderItems: [] };
-  constructor(private orderService: OrderService, private dishService: DishService, private signalrService: SignalrService) { }
+
+  constructor(
+    private orderService: OrderService,
+    private dishService: DishService,
+    private signalrService: SignalrService
+  ) { }
 
   ngOnInit() {
     this.loadOrders();
-    this.loadCart()
+    this.loadCart();
   }
 
   loadOrders() {
@@ -40,14 +51,12 @@ export class OrdersComponent implements OnInit {
 
   loadCart(): void {
     const orderItems = localStorage.getItem('cart');
-    //this.cartItems = cartData ? JSON.parse(cartData) : [];
-
     this.dishes = []; // Очищуємо перед новим завантаженням
 
-    this.orderItems.forEach((item: { dishId: number; quantity: number}) => {
+    this.orderItems.forEach((item: { dishId: number; quantity: number }) => {
       this.dishService.getDishById(item.dishId).subscribe((dish) => {
         console.log(dish);
-        this.totalPrice = this.totalPrice + dish.price * item.quantity
+        this.totalPrice += dish.price * item.quantity;
         this.dishes.push(dish);
       });
     });

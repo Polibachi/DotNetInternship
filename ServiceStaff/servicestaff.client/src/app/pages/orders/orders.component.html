@@ -2,27 +2,31 @@
   <h2>Замовлення</h2>
   <h3>Номер столу</h3>
   <mat-form-field>
-    <input matInput placeholder="Номер столу" type="number" [(ngModel)]="newOrder.tableNumber">
+    <input matInput
+           placeholder="Номер столу"
+           type="number"
+           [(ngModel)]="newOrder.tableNumber">
   </mat-form-field>
   <div class="button-container">
-    <button mat-raised-button color="accent" (click)="addOrder()">Додати замовлення</button>
+    <button mat-raised-button
+            color="accent"
+            (click)="addOrder()">
+      Додати замовлення
+    </button>
   </div>
 
-
-
+  <!-- Картки страв -->
   <mat-card class="dish-card" *ngFor="let dish of dishes">
     <mat-card-header>
       <mat-card-title>{{ dish.name }}</mat-card-title>
     </mat-card-header>
-
     <mat-card-content>
       <p>{{ dish.description }}</p>
     </mat-card-content>
     <mat-card-subtitle>{{ dish.price }} UAH</mat-card-subtitle>
   </mat-card>
 
+  <!-- Список замовлень -->
   <app-order-list [orders]="orders"></app-order-list>
-  {{ totalPrice }}
-
+  <p>{{ totalPrice }} UAH</p>
 </mat-card>
-
