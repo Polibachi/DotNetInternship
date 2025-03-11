@@ -7,6 +7,33 @@
            type="number"
            [(ngModel)]="newOrder.tableNumber">
   </mat-form-field>
+
+  <h3>Коментар</h3>
+  <mat-form-field>
+    <textarea matInput
+              placeholder="Напишіть коментар"></textarea>
+  </mat-form-field>
+
+  <!-- Картки страв -->
+  <div class="dishes-container">
+    <mat-card class="dish-card" *ngFor="let dish of dishes">
+      <mat-card-header>
+        <mat-card-title>{{ dish.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ dish.description }}</p>
+      </mat-card-content>
+      <mat-card-subtitle>{{ dish.price }} UAH</mat-card-subtitle>
+    </mat-card>
+  </div>
+
+  <!-- Блок для загальної суми -->
+  <div class="total-price-container">
+    <h3>Загальна сума до оплати</h3>
+    <p>{{ totalPrice }} UAH</p>
+  </div>
+
+  <!-- Кнопка для додавання замовлення -->
   <div class="button-container">
     <button mat-raised-button
             color="accent"
@@ -14,19 +41,4 @@
       Додати замовлення
     </button>
   </div>
-
-  <!-- Картки страв -->
-  <mat-card class="dish-card" *ngFor="let dish of dishes">
-    <mat-card-header>
-      <mat-card-title>{{ dish.name }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>{{ dish.description }}</p>
-    </mat-card-content>
-    <mat-card-subtitle>{{ dish.price }} UAH</mat-card-subtitle>
-  </mat-card>
-
-  <!-- Список замовлень -->
-  <app-order-list [orders]="orders"></app-order-list>
-  <p>{{ totalPrice }} UAH</p>
 </mat-card>
