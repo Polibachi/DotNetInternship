@@ -22,6 +22,13 @@ export class AuthService {
       .pipe(catchError(this.handleError));
   }
 
+  logOut() {
+    localStorage.removeItem('role');
+    localStorage.removeItem('token');
+    window.location.reload();
+   
+  }
+
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
     if (!token) return false;

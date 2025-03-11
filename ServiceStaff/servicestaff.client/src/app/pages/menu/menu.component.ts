@@ -11,6 +11,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { AddDishDialogComponent } from '../add-dish-dialog/add-dish-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { RouterModule } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
+import { AuthService } from '../../services/auth.service';
 
 interface Dish {
   id: number;
@@ -25,6 +28,8 @@ interface Dish {
   styleUrls: ['./menu.component.css'],
   standalone: true,
   imports: [
+    RouterModule,
+    MatListModule,
     CommonModule,
     MatSlideToggleModule,
     MatMenuModule,
@@ -33,13 +38,14 @@ interface Dish {
     MatToolbarModule,
     MatCardModule,
     MatButtonModule
+
   ]
 })
 export class MenuComponent implements OnInit {
   dishes: Dish[] = [];
   cart: { dishId: number; quantity: number }[] = [];
 
-  constructor(private dishService: DishService, private dialog: MatDialog, private http: HttpClient) { }
+  constructor(private dishService: DishService, private authService: AuthService, private dialog: MatDialog, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loadDishes();
@@ -94,6 +100,17 @@ export class MenuComponent implements OnInit {
 
     localStorage.setItem('cart', JSON.stringify(cart));
     this.loadCart();
+  }
+  getDishName(dishId: number): string {
+    const dish = this.dishes.find(d => d.id === dishId);
+    return dish ? dish.name : 'Невідомо';
+  }
+  logOut() {
+    this.authService.logOut();
+  }
+  clearCart() {
+    localStorage.removeItem('cart');
+    this.cart = [];
   }
 
 

@@ -5,17 +5,21 @@
         <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="/menu">
           <mat-icon>menu</mat-icon>
-          <span>Redial</span>
+          <span>Меню</span>
         </button>
-        <button mat-menu-item disabled>
-          <mat-icon>voicemail</mat-icon>
-          <span>Check voice mail</span>
+        <button mat-menu-item routerLink="/orders">
+          <mat-icon>shopping_cart</mat-icon>
+          <span>Замовлення</span>
         </button>
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Disable alerts</span>
+        <button mat-menu-item >
+          <mat-icon>data_thresholding</mat-icon>
+          <span>Адмінка</span>
+        </button>
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>logout</mat-icon>
+          <span>Вийти</span>
         </button>
       </mat-menu>
       <div class="toolbar no-select">
@@ -61,8 +65,20 @@
         </button>
       </mat-card-actions>
     </mat-card>
+    
 
   </div>
-    
+  <mat-card-content class="cart-container" *ngIf="cart.length > 0">
+    <button   mat-button routerLink="/orders">
+      <h2>Корзина</h2>
+      </button>
+      <mat-list>
+        <mat-list-item *ngFor="let item of cart">
+          <span>{{ getDishName(item.dishId) }} ({{ item.quantity }})</span>
+        </mat-list-item>
+      </mat-list>
+      <button mat-button color="warn" (click)="clearCart()">Очистити корзину</button>
+</mat-card-content>
+
 
 </body>
