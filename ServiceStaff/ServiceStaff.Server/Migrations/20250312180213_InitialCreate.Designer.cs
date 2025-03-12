@@ -12,8 +12,8 @@ using ServiceStaff.Server.Data;
 namespace ServiceStaff.Server.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250311142553_RecreateDishTable")]
-    partial class RecreateDishTable
+    [Migration("20250312180213_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,6 +89,9 @@ namespace ServiceStaff.Server.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");

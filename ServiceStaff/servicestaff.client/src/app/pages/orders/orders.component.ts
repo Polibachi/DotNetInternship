@@ -30,8 +30,7 @@ import { Router } from '@angular/router';
     MatCardModule,
     MatMenuModule,
     MatToolbarModule,
-    MatIconModule,
-    OrderListComponent
+    MatIconModule
   ]
 })
 export class OrdersComponent implements OnInit {

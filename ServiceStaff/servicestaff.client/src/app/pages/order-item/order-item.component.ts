@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,12 +9,14 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class OrderItemComponent {
-  @Input() order: any; // Отримуємо вхідні дані
+  @Input() order: any;  // Приймаємо одне замовлення
+  @Output() orderReady: EventEmitter<any> = new EventEmitter<any>();
 
-  markReady() {
+  markReady(): void {
     if (this.order) {
       this.order.status = 'Готово';
       console.log('Замовлення виконане:', this.order);
+      this.orderReady.emit(this.order);  // Відправляємо подію в батьківський компонент
     } else {
       console.error('order не визначений');
     }

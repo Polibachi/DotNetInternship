@@ -38,7 +38,6 @@ export class NotificationsComponent {
 
   showNotification(message: string) {
     this.snackBar.open(message, 'Закрити', {
-      duration: 3000,
       horizontalPosition: 'center',
       verticalPosition: 'bottom',
       panelClass: ['custom-snackbar'],

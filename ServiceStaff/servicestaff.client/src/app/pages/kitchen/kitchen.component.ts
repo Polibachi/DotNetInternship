@@ -24,6 +24,7 @@ export class KitchenComponent {
     order.status = 'Готово';
     this.signalrService.showNotification(`Страва "${order.name}" готова!`); // Викликаємо сповіщення
   }
+
   public GetOrders(): void {
     this.orderService.getOrdersByStatus(0).subscribe((data) => {
       this.orders = data;  // присвоюємо дані для статусу 0
@@ -33,4 +34,5 @@ export class KitchenComponent {
     });
   }
 }
+
 

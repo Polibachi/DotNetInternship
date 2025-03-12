@@ -8,5 +8,7 @@ export interface Order {
 
 export interface OrderItem {
   dishId: number;
+  dishName: string;
   quantity: number;
+  isChecked: boolean;
 }
