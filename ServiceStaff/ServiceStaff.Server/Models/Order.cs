@@ -22,7 +22,6 @@ namespace ServiceStaff.Server.Models
 
         public string? Comment { get; set; } // Нове поле
 
-        [JsonIgnore]
         public List<OrderItem> OrderItems { get; set; } = new();
     }
 }

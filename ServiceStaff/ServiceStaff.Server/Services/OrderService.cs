@@ -64,7 +64,7 @@ namespace ServiceStaff.Server.Services
             {
                 Id = orderId,
                 Status = statusMessage,
-                Message = $"Замовлення #{orderId} {statusMessage}!"
+                Message ="Замовлення #{orderId} {statusMessage}!"
             });
 
 
@@ -127,12 +127,25 @@ namespace ServiceStaff.Server.Services
             };
         }
 
-        public async Task<IEnumerable<Order>> GetOrdersByStatusAsync(OrderStatus status)
+        public async Task<IEnumerable<object>> GetOrdersByStatusAsync(OrderStatus status)
         {
             return await _context.Orders
                 .Where(o => o.Status == status)
+                .Select(o => new
+                {
+                    o.Id,
+                    o.TableNumber,
+                    o.CreatedAt,
+                    o.Comment,
+                    OrderItems = o.OrderItems.Select(oi => new
+                    {
+                        DishName = oi.Dish.Name,  // Беремо назву страви
+                        oi.Quantity
+                    }).ToList()
+                })
                 .ToListAsync();
         }
+
 
 
         // 1. Кількість замовлень кожної страви

@@ -20,11 +20,11 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'orders', component: OrdersComponent, /*canActivate: [AuthGuard], data: { roles: ['staff'] }*/ },
-  { path: 'kitchen', component: KitchenComponent, /*canActivate: [AuthGuard], data: { roles: ['chef'] }*/ },
-  { path: 'waiter', component: WaiterComponent },
-  { path: 'order-list', component: OrderListComponent, canActivate: [AuthGuard] },
-  { path: 'order-item', component: OrderItemComponent, canActivate: [AuthGuard] },
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard], data: { roles: ['staff'] } },
+  { path: 'kitchen', component: KitchenComponent, canActivate: [AuthGuard], data: { roles: ['chef'] } },
+  { path: 'waiter', component: WaiterComponent, canActivate: [AuthGuard], data: { roles: ['staff'] } },
+  //{ path: 'order-list', component: OrderListComponent, canActivate: [AuthGuard] },
+  //{ path: 'order-item', component: OrderItemComponent, canActivate: [AuthGuard] },
   { path: 'notifications', component: NotificationsComponent, canActivate: [AuthGuard] },
   { path: 'menu', component: MenuComponent }
 ];

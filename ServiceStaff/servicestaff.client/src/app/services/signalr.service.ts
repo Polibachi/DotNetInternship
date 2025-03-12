@@ -13,7 +13,7 @@ export class SignalrService {
   private notificationsSubject = new BehaviorSubject<string[]>([]);
   notifications$ = this.notificationsSubject.asObservable();
 
-  private allowedRoutes = ['/orders', '/kitchen']; // Дозволені сторінки
+  private allowedRoutes = ['/waiter', '/kitchen']; // Дозволені сторінки
   private currentRoute: string = '';
 
   constructor(private snackBar: MatSnackBar, private router: Router) {
@@ -41,8 +41,14 @@ export class SignalrService {
       const currentNotifications = this.notificationsSubject.value;
       this.notificationsSubject.next([...currentNotifications, message]);
       this.showNotification(message);
+      this.refreshPage();
     });
   }
+
+  refreshPage(): void {
+    window.location.reload();
+  }
+
 
   public showNotification(message: string) {  // ✅ Було private → стало public
     console.log("New notification!");
