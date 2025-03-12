@@ -1,5 +1,5 @@
 @import '@angular/material/prebuilt-themes/azure-blue.css';
-@import 'src/app/add-dish-dialog/add-dish-dialog.component.css';
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

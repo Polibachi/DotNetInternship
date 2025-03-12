@@ -1,6 +1,10 @@
-@import '../add-dish-dialog/add-dish-dialog.component.css';
-@import '../style.css';
 
+
+
+.no-select {
+  cursor: pointer;
+  user-select: none;
+}
 
 
 
@@ -68,7 +72,7 @@ mat-toolbar button mat-icon {
 
 
 
-html, body, dishes-container {
+body {
   height: 100%;
   margin: 0;
   padding: 0;
