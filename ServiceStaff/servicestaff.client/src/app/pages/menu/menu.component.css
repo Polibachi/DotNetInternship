@@ -1,6 +1,29 @@
+/*body {
+  background-color: gainsboro;*/ /* замініть на будь-який бажаний колір */
+  /*margin: 0;
+  padding: 0;
+  height: 100%;
+}*/
 
+/* Фон для контейнера з стравами */
+/*.dishes-container {
+  background-color: gainsboro;*/ /* змініть на потрібний колір */
+  /*min-height: 100vh;*/ /* забезпечить, що контейнер покриє всю висоту сторінки */
+  /*padding: 20px;
+}*/
 
+/* Фон для карток і інших елементів, якщо потрібно */
+/*.dish-card {
+  background-color: gainsboro;
+  margin-bottom: 10px;
+}*/
 
+/* Стили для корзини */
+/*.cart-container {
+  background-color: #eeeeee;*/ /* фон для картки корзини */
+  /*padding: 20px;
+  border-radius: 5px;
+}*/
 .no-select {
   cursor: pointer;
   user-select: none;
@@ -27,7 +50,6 @@ mat-toolbar {
   }
 
   mat-toolbar .toolbar {
-   
     font-size: 1.2rem;
     font-weight: bold;
     color: #fff;
@@ -91,11 +113,13 @@ body {
   gap: 12px;
   padding: 20px 40px;
   justify-content: center;
+  background-color: gainsboro;
 }
 
 .dish-card,
 .add-dish-icon {
   display: flex;
+  background-color: gainsboro;
   flex-direction: column;
   justify-content: space-between;
   max-width: 320px;
@@ -197,6 +221,7 @@ mat-card-actions {
 
 /* Стилізація корзини */
 .cart-container {
+
   max-width: 400px;
   margin: 20px auto;
   padding: 20px;
@@ -244,3 +269,6 @@ mat-card-actions {
     .cart-container button:hover {
       transform: scale(1.05);
     }
+.floor {
+  background-color: gainsboro;
+}

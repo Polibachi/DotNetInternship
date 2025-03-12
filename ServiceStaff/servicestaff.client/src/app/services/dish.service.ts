@@ -25,7 +25,7 @@ export class DishService {
   }
 
 
-  addDish(dish: any, token: string|null) {
+  addDish(dish: any, token: string | null) {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });

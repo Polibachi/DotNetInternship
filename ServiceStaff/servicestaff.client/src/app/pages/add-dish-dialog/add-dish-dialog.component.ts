@@ -1,36 +1,35 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, signal } from '@angular/core';
+import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { DishService } from '../../services/dish.service';
-import { MatDialogModule } from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
-
 @Component({
   selector: 'app-add-dish-dialog',
-  styleUrls: ['./add-dish-dialog.component.css'],
   templateUrl: './add-dish-dialog.component.html',
+  styleUrls: ['./add-dish-dialog.component.css'],
+  standalone: true,
   imports: [
-    MatDialogModule,
-    FormsModule,
-    MatFormFieldModule,
     CommonModule,
-    FormsModule,
     MatDialogModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule
-
   ],
 })
 export class AddDishDialogComponent {
-  dish = { id: 0, name: '', price: 0, description: '' };
-  public token: string | null = localStorage.getItem('token');
+  dishForm = new FormGroup({
+    name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    price: new FormControl(0, { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
+    description: new FormControl('', { nonNullable: true, validators: [Validators.required] })
+  });
 
+  isLoading = signal(false);
+  token = localStorage.getItem('token');
 
   constructor(
     private dishService: DishService,
@@ -38,9 +37,22 @@ export class AddDishDialogComponent {
   ) { }
 
   addDish(): void {
-    console.log(this.token);
-    this.dishService.addDish(this.dish, this.token).subscribe(() => {
-      this.dialogRef.close(true); // Закриваємо вікно та оновлюємо список
-    });
+    if (this.dishForm.invalid) return;
+
+    this.isLoading.set(true);
+
+    this.dishService.addDish(this.dishForm.getRawValue(), this.token).subscribe({
+      next: () => {
+        this.isLoading.set(false);
+        this.dialogRef.close(true);
+      },
+      error: (err) => {
+        console.error('Помилка додавання страви:', err);
+        this.isLoading.set(false);
+      }
+    }
+    );
+    this.dialogRef.close();
+    window.location.reload();
   }
 }

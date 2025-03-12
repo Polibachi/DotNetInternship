@@ -68,9 +68,10 @@
     
 
   </div>
-  <mat-card-content class="cart-container" *ngIf="cart.length > 0">
-    <button   mat-button routerLink="/orders">
-      <h2>Корзина</h2>
+  <div class="floor">
+    <mat-card-content class="cart-container" *ngIf="cart.length > 0">
+      <button mat-button routerLink="/orders">
+        <h2>Корзина</h2>
       </button>
       <mat-list>
         <mat-list-item *ngFor="let item of cart">
@@ -78,7 +79,7 @@
         </mat-list-item>
       </mat-list>
       <button mat-button color="warn" (click)="clearCart()">Очистити корзину</button>
-</mat-card-content>
-
+    </mat-card-content>
+  </div>
 
 </body>

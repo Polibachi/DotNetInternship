@@ -67,8 +67,8 @@ export class MenuComponent implements OnInit {
 
   openAddDishDialog(): void {
     const dialogRef = this.dialog.open(AddDishDialogComponent, {
-      width: '800px',
-      height: '600px'
+      width: '600px',
+      height: '500px'
     });
 
     dialogRef.afterClosed().subscribe((result) => {
