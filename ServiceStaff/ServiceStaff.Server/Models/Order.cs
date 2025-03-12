@@ -17,11 +17,12 @@ namespace ServiceStaff.Server.Models
     {
         public int Id { get; set; }
         public int TableNumber { get; set; }
-        public OrderStatus Status { get; set; } = OrderStatus.Pending;  // e.g., "Pending", "Completed"
+        public OrderStatus Status { get; set; } = OrderStatus.Pending;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+        public string? Comment { get; set; } // Нове поле
 
         [JsonIgnore]
         public List<OrderItem> OrderItems { get; set; } = new();
     }
-
 }

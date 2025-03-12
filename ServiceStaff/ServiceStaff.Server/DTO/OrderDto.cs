@@ -2,9 +2,11 @@
 {
     public class OrderDto
     {
-        public int Id { get; set; } // Додаємо ідентифікатор
+        public int Id { get; set; }
         public int TableNumber { get; set; }
-        public DateTime CreatedAt { get; set; } // Додаємо дату створення
+        public DateTime CreatedAt { get; set; }
+        public string? Comment { get; set; } // Нове поле
         public List<OrderItemDto> OrderItems { get; set; } = new();
     }
+
 }
