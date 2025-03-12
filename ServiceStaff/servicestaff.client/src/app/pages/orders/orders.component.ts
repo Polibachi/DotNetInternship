@@ -80,14 +80,19 @@ export class OrdersComponent implements OnInit {
     this.orderService.createOrder(this.newOrder).subscribe((order: Order) => {
       this.orders.push(order);
       this.signalrService.showNotification(`Замовлення #${order.id} додано!`);
-      this.clearCart();
+
     });
+      this.clearCart();
   }
 
   clearCart() {
     localStorage.removeItem('cart');
     this.newOrder = { id: 0, tableNumber: 0, createdAt: new Date(), orderItems: [] };
+    this.orderItems = [];
+    this.dishes = [];
+    this.totalPrice = 0;
   }
+
 
   getDishImage(id: number): string {
     return `assets/images/dishes/${id}.jpeg`;
