@@ -3,6 +3,7 @@ export interface Order {
   tableNumber: number;
   createdAt: Date;
   orderItems: OrderItem[];
+  comment?: string; // Нове поле
 }
 
 export interface OrderItem {

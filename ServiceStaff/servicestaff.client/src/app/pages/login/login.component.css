@@ -1,46 +1,131 @@
 .login-container {
-  max-width: 350px;
-  margin: 60px auto;
-  padding: 25px;
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
   border: 1px solid #ddd;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
-  background: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
 }
 
 h2 {
+  color: #007bff;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
   color: #333;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 input, select {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+  width: calc(100% - 40px);
+  padding: 12px;
+  margin: 12px auto;
+  display: block;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 16px;
+  background-color: #f9f9f9;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+  input:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+
+.password-field {
+  position: relative;
+}
+ 
+.toggle-password {
+  position: absolute;
+  right: -120px; /* Іконка прилягає до правого краю */
+  top: -20%; /* Центруємо іконку вертикально */
+  background: none; /* Видаляє задній фон */
+  border: none; /* Видаляє рамку */
+  cursor: pointer;
+  font-size: 18px;
+  color: #007bff;
+  padding: 0; /* Забирає зайві внутрішні відступи */
+}
+
+  .toggle-password:hover {
+    text-shadow: 0 0 5px rgba(0, 123, 255, 0.2); /* Додаємо легку тінь */
+    background: none; /* Впевнюємося, що нема фону */
+  }
+
+
 button {
-  width: 100%;
-  padding: 12px;
-  background: #007bff;
+  width: calc(100% - 40px);
+  padding: 14px;
+  margin: 20px auto;
+  display: block;
+  background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: transform 0.2s ease, background 0.3s ease;
 }
 
   button:hover {
-    background: #0056b3;
+    background: linear-gradient(135deg, #0056b3, #003f7f);
+    transform: translateY(-2px);
+  }
+
+  button:active {
+    transform: translateY(1px);
   }
 
 .error-message {
-  color: red;
+  color: #dc3545;
   font-size: 14px;
-  margin-top: 10px;
+  margin-top: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Адаптивні стилі для мобільних пристроїв */
+@media (max-width: 768px) {
+  .login-container {
+    max-width: 95%;
+    padding: 20px;
+    margin: 40px auto;
+    border-radius: 10px;
+  }
+
+  input, select, button {
+    width: calc(100% - 30px);
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .error-message {
+    font-size: 12px;
+  }
+
+  label {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  .toggle-password {
+    font-size: 16px; /* Менший розмір іконки для мобільних */
+  }
 }

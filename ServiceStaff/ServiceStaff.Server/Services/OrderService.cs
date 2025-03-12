@@ -25,12 +25,14 @@ namespace ServiceStaff.Server.Services
                 TableNumber = orderDto.TableNumber,
                 Status = OrderStatus.Pending,
                 CreatedAt = DateTime.UtcNow,
+                Comment = orderDto.Comment, // Збереження коментаря
                 OrderItems = orderDto.OrderItems.Select(oi => new OrderItem
                 {
                     DishId = oi.DishId,
                     Quantity = oi.Quantity
                 }).ToList()
             };
+
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
