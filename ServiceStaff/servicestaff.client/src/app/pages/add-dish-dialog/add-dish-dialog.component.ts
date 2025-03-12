@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-add-dish-dialog',
+  styleUrls: ['./add-dish-dialog.component.css'],
   templateUrl: './add-dish-dialog.component.html',
   imports: [
     MatDialogModule,
