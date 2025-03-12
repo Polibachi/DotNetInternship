@@ -24,6 +24,25 @@
   /*padding: 20px;
   border-radius: 5px;
 }*/
+button.big {
+  font-size: 18px; /* Великий шрифт */
+  padding: 15px 30px; /* Збільшені відступи */
+  background-color: #4CAF50; /* Зелений фон */
+  color: white; /* Білий колір тексту */
+  border: none; /* Без рамки */
+  border-radius: 5px; /* Закруглені кути */
+  cursor: pointer; /* Курсор у вигляді руки */
+  transition: background-color 0.3s ease; /* Плавний перехід для фону */
+}
+
+  button.big:hover {
+    background-color: #45a049; /* Темніший фон при наведенні */
+  }
+
+
+
+
+
 .no-select {
   cursor: pointer;
   user-select: none;

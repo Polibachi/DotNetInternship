@@ -13,15 +13,19 @@
           <mat-icon>shopping_cart</mat-icon>
           <span>Замовлення</span>
         </button>
-        <button mat-menu-item >
+        <button mat-menu-item>
           <mat-icon>data_thresholding</mat-icon>
           <span>Адмінка</span>
         </button>
-        <button mat-menu-item (click)="logOut()">
-          <mat-icon>logout</mat-icon>
-          <span>Вийти</span>
-        </button>
-      </mat-menu>
+          <button  mat-menu-item (click)(click)="onButtonClick()">
+            <mat-icon>logout</mat-icon>
+            <span>{{ getButtonLabel() }}</span>
+          </button>
+          <button mat-menu-item (click)="logOut()">
+            <mat-icon>logout</mat-icon>
+            <span>Вийти</span>
+          </button>
+</mat-menu>
       <div class="toolbar no-select">
         <span style="margin-right: 10px;">🍽 Service Staff</span>
       </div>
@@ -31,6 +35,7 @@
 </header>
 
 <body>
+  
   <div class="dishes-container">
     <mat-card class="dish-card" *ngFor="let dish of dishes">
       <mat-card-header>
@@ -65,7 +70,7 @@
         </button>
       </mat-card-actions>
     </mat-card>
-    
+
 
   </div>
   <div class="floor">
