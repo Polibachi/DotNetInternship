@@ -1,0 +1,48 @@
+/* Dialog Container */
+.dialog-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+/* Form Fields */
+.full-width {
+  width: 100%;
+}
+
+/* Actions */
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px;
+}
+
+/* Buttons */
+.cancel-button {
+  color: #555;
+  background: transparent;
+  border-radius: 6px;
+  padding: 8px 16px;
+  transition: background 0.3s ease;
+}
+
+  .cancel-button:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+.add-button {
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 6px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
