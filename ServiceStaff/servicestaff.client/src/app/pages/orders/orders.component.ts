@@ -71,9 +71,9 @@ export class OrdersComponent implements OnInit {
     this.orderService.createOrder(this.newOrder).subscribe((order: Order) => {
       this.orders.push(order);
       this.signalrService.showNotification(`Замовлення #${order.id} додано!`);
-
+      
     });
-      this.clearCart();
+    this.clearCart();
   }
 
   clearCart() {

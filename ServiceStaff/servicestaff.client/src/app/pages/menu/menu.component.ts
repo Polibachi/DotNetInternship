@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { AuthService } from '../../services/auth.service';
+import '../add-dish-dialog/add-dish-dialog.component.css';
 
 interface Dish {
   id: number;
@@ -99,8 +100,12 @@ export class MenuComponent implements OnInit {
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Оновлюємо корзину і список страв без перезавантаження сторінки
     this.loadCart();
+    this.loadDishes();
   }
+
   getDishName(dishId: number): string {
     const dish = this.dishes.find(d => d.id === dishId);
     return dish ? dish.name : 'Невідомо';
