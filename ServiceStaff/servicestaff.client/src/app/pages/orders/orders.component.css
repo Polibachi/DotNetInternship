@@ -1,11 +1,17 @@
 /* Контейнер форми */
 .orders-container {
-  padding: 20px;
+  padding: 40px;
   max-width: 600px;
-  margin: 20px auto; /* Відступи для форми зверху і по центру */
+  margin: 30px auto; /* Відступи для форми зверху і по центру */
   border-radius: 12px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Легка тінь */
   color: black;
+}
+
+.header {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  padding: 8px 0;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 mat-form-field {
