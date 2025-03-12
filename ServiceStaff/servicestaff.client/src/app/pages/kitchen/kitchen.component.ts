@@ -5,7 +5,6 @@ import { SignalrService } from '../../services/signalr.service'; // Додаєм
 import { OrderService } from '../../services/order.service';
 import { Observable } from 'rxjs';
 
-
 @Component({
   selector: 'app-kitchen',
   standalone: true,
@@ -33,7 +32,5 @@ export class KitchenComponent {
       });
     });
   }
-
-
 }
 

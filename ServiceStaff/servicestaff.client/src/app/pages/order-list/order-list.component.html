@@ -2,6 +2,7 @@
   <h3>Замовлення #{{order.id}}</h3>
   <p>Номер столу: {{order.tableNumber}}</p>
   <p>Час створення: {{order.createdAt | date:'short'}}</p>
+  <p *ngIf="order.comment">Коментар: {{order.comment}}</p> <!-- Додано -->
   <div *ngFor="let item of order.orderItems">
     <p>Страва ID: {{item.dishId}} - Кількість: {{item.quantity}}</p>
   </div>

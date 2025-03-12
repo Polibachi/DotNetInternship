@@ -5,15 +5,17 @@
     <input type="text" id="email" [(ngModel)]="email" name="email" required>
 
     <label for="password">Пароль:</label>
-    <input type="password" id="password" [(ngModel)]="password" name="password" required>
-
-    <label for="role">Роль:</label>
-    <select id="role" [(ngModel)]="role" name="role" required>
-      <option value="">Оберіть роль</option>
-      <option value="staff">Офіціант</option>
-      <option value="chef">Кухар</option>
-      <option value="admin">Адміністратор</option>
-    </select>
+    <div class="password-field">
+      <input [type]="showPassword ? 'text' : 'password'"
+             id="password"
+             [(ngModel)]="password"
+             name="password"
+             required>
+      <button type="button" (click)="togglePasswordVisibility()" class="toggle-password">
+        <span *ngIf="showPassword">👁️</span>
+        <span *ngIf="!showPassword">👁️‍🗨️</span>
+      </button>
+    </div>
 
     <button type="submit">Увійти</button>
 

@@ -1,7 +1,17 @@
+/* Контейнер форми */
 .orders-container {
-  padding: 20px;
+  padding: 40px;
   max-width: 600px;
-  margin: auto;
+  margin: 30px auto; /* Відступи для форми зверху і по центру */
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Легка тінь */
+  color: black;
+}
+
+.header {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  padding: 8px 0;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 mat-form-field {
@@ -9,10 +19,15 @@ mat-form-field {
   margin-bottom: 10px;
 }
 
-.button-container button {
-  margin-right: 10px; /* Змінюй значення за потреби */
+/* Відступи для кнопки */
+.button-container {
+  text-align: center;
+  margin-top: 20px; /* Відступ зверху для кнопки */
 }
 
+.button-container button {
+  margin-right: 10px;
+}
 
 button {
   margin-right: 10px;
@@ -39,7 +54,7 @@ button {
   cursor: pointer;
   user-select: none;
 }
-/* Задаємо однакові відступи зліва і справа для картки "Додати страву" */
+
 .add-dish-icon {
   display: flex;
   flex-direction: column;
@@ -52,35 +67,35 @@ button {
   padding: 16px;
   background: #fff;
   text-align: center;
-  margin-left: 16px; /* Відступ зліва */
-  margin-right: 16px; /* Відступ справа */
+  margin: 16px; /* Відступи від картки */
 }
 
-/* Тепер для всіх карток встановимо однакову висоту */
+/* Стилізація карток */
 .dish-card, .add-dish-icon {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   max-width: 320px;
   height: 100%;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Легка тінь */
   border-radius: 12px;
   overflow: hidden;
   padding: 16px;
   background: #fff;
   text-align: center;
+  margin: 10px; /* Відступи між картками */
 }
 
-/* Зменшуємо відстань між картками */
+/* Контейнер для карток */
 .dishes-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 10px; /* Зменшили відстань між картками */
-  padding: 20px 40px;
-  justify-content: center;
+  display: flex; /* Змінюємо сітку на flexbox */
+  flex-wrap: wrap; /* Дозволяємо перенос елементів на новий ряд */
+  justify-content: center; /* Центруємо картки по горизонталі */
+  gap: 20px; /* Відстань між картками */
+  padding: 20px 40px; /* Залишаємо відступи */
 }
 
-/* Фіксована висота заголовка */
+/* Заголовок карток */
 mat-card-title {
   font-size: 18px;
   font-weight: bold;
@@ -91,7 +106,7 @@ mat-card-title {
   margin-bottom: 10px;
 }
 
-/* Фіксована висота картинки */
+/* Зображення в картках */
 .dish-card img {
   width: 100%;
   height: 200px;
@@ -128,42 +143,58 @@ mat-card-actions {
     padding: 10px;
   }
 
-.add-dish-icon mat-card-header {
-  padding-bottom: 0;
+/* Кастомізований блок для загальної суми */
+.total-price-container {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f0f8ff; /* Легкий блакитний фон */
+  border: 1px solid #dcdcdc; /* Тонка рамка */
+  border-radius: 8px; /* Згладжені кути */
+  font-size: 18px; /* Розмір тексту */
+  font-weight: bold; /* Напівжирний текст */
+  color: #333; /* Темний текст */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Додати тінь */
 }
 
-.add-dish-icon mat-card-title {
-  font-size: 18px;
-  font-weight: bold;
-  height: auto; /* Вилучено фіксовану висоту */
+/* Snackbar */
+.custom-snackbar {
+  background-color: #323232 !important;
+  color: white !important;
+  font-size: 16px !important;
+  text-align: center;
+}
+
+/* Шапка */
+.header {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+}
+
+/* Панель інструментів */
+.toolbar {
   display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+/* Іконка страв */
+.add-dish-icon {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
-}
-
-.add-dish-icon mat-card-content {
-  flex-grow: 1;
-  font-size: 14px;
-  color: #666;
+  max-width: 320px;
+  height: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  background: #fff;
   text-align: center;
-  padding: 10px 0;
+  margin: 16px;
 }
 
-.add-dish-icon mat-card-actions {
-  display: flex;
-  justify-content: center;
-  margin-top: auto;
-}
-
-  .add-dish-icon mat-card-actions button {
-    width: 100%;
-    max-width: 180px;
-    font-weight: bold;
-    padding: 10px;
-  }
-
-.add-dish-icon button mat-icon {
-  font-size: 24px;
-  margin-right: 8px;
+/* Текст, який не можна виділити */
+.no-select {
+  cursor: pointer;
+  user-select: none;
 }

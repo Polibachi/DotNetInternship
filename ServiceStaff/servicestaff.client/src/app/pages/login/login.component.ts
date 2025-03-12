@@ -16,17 +16,20 @@ import { jwtDecode } from 'jwt-decode';
 export class LoginComponent {
   email: string = '';
   password: string = '';
-  role: string = ''; // ✅ Додаємо role
-
+  showPassword: boolean = false; // Контролює видимість пароля
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
+  // Перемикає видимість пароля
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
   login() {
     const credentials = {
       email: this.email,
-      password: this.password,
-      role: this.role  // ✅ Передаємо роль
+      password: this.password
     };
 
     this.authService.login(credentials).subscribe({
@@ -36,7 +39,8 @@ export class LoginComponent {
         const decodedToken: any = jwtDecode(res.token);
         console.log('Розкодований токен:', decodedToken);
 
-        localStorage.setItem('role', decodedToken.role); // ✅ Витягуємо роль із токена
+        // Використовуємо роль із токена
+        localStorage.setItem('role', decodedToken.role);
 
         switch (decodedToken.role) {
           case 'staff':
@@ -60,3 +64,4 @@ export class LoginComponent {
     });
   }
 }
+
