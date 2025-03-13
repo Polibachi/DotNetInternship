@@ -3,13 +3,14 @@ import { Component } from '@angular/core';
 import { OrderListComponent } from '../order-list/order-list.component';
 import { SignalrService } from '../../services/signalr.service'; // Додаємо SignalrService
 import { OrderService } from '../../services/order.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-waiter',
   standalone: true,
   templateUrl: './waiter.component.html',
   styleUrls: ['./waiter.component.css'],
-  imports: [CommonModule, OrderListComponent]
+  imports: [CommonModule, OrderListComponent, HeaderComponent]
 })
 export class WaiterComponent {
   orders: any[] = [];

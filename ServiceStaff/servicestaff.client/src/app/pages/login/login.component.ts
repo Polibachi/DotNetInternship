@@ -44,13 +44,13 @@ export class LoginComponent {
 
         switch (decodedToken.role) {
           case 'staff':
-            this.router.navigate(['/orders']);
+            this.router.navigate(['/menu']);
             break;
           case 'chef':
             this.router.navigate(['/kitchen']);
             break;
           case 'admin':
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/menu']);
             break;
           default:
             this.router.navigate(['/home']);

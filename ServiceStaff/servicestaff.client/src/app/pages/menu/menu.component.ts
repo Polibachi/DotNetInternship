@@ -15,9 +15,7 @@ import { RouterModule, Router } from '@angular/router';  // ✅ Додано Rou
 import { MatListModule } from '@angular/material/list';
 import { AuthService } from '../../services/auth.service';
 import { jwtDecode } from 'jwt-decode'; // ✅ Правильний імпорт
-
-import '../add-dish-dialog/add-dish-dialog.component.css';
-
+import { HeaderComponent } from '../header/header.component';
 interface Dish {
   id: number;
   name: string;
@@ -136,9 +134,9 @@ export class MenuComponent implements OnInit {
   getButtonLabel(): string {
     switch (this.userRole) {
       case 'staff':
-        return 'Переглянути замовлення';
+        return 'Мої замовлення';
       case 'chef':
-        return 'Переглянути кухню';
+        return 'Мої замовлення';
       case 'admin':
         return 'Панель керування';
       default:
@@ -150,7 +148,7 @@ export class MenuComponent implements OnInit {
   onButtonClick(): void {
     switch (this.userRole) {
       case 'staff':
-        this.router.navigate(['/orders']);
+        this.router.navigate(['/waiter']);
         break;
       case 'chef':
         this.router.navigate(['/kitchen']);

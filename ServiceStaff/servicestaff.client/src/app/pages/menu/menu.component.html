@@ -1,41 +1,6 @@
-<header>
-  <div class="header">
-    <mat-toolbar>
-      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/menu">
-          <mat-icon>menu</mat-icon>
-          <span>Меню</span>
-        </button>
-        <button mat-menu-item routerLink="/orders">
-          <mat-icon>shopping_cart</mat-icon>
-          <span>Замовлення</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>data_thresholding</mat-icon>
-          <span>Адмінка</span>
-        </button>
-          <button  mat-menu-item (click)(click)="onButtonClick()">
-            <mat-icon>logout</mat-icon>
-            <span>{{ getButtonLabel() }}</span>
-          </button>
-          <button mat-menu-item (click)="logOut()">
-            <mat-icon>logout</mat-icon>
-            <span>Вийти</span>
-          </button>
-</mat-menu>
-      <div class="toolbar no-select">
-        <span style="margin-right: 10px;">🍽 Service Staff</span>
-      </div>
-      <span class="example-spacer"></span>
-    </mat-toolbar>
-  </div>
-</header>
+
 
 <body>
-  
   <div class="dishes-container">
     <mat-card class="dish-card" *ngFor="let dish of dishes">
       <mat-card-header>
@@ -54,8 +19,8 @@
       </mat-card-actions>
     </mat-card>
 
-
-    <mat-card class="dish-card add-dish-icon">
+    <!-- Додатковий блок для адміністратора -->
+    <mat-card class="dish-card add-dish-icon" *ngIf="userRole === 'admin'">
       <mat-card-header>
         <mat-card-title>Додати страву</mat-card-title>
       </mat-card-header>
@@ -64,6 +29,7 @@
         <p>Додайте нову страву до меню</p>
         <p>Назва фото: {{ getLastDishIdPlusOne() }}.jpeg</p>
       </mat-card-content>
+
       <mat-card-actions>
         <button mat-button color="primary" (click)="openAddDishDialog()">
           <mat-icon>add</mat-icon> Додати страву
@@ -71,8 +37,8 @@
       </mat-card-actions>
     </mat-card>
 
-
   </div>
+
   <div class="floor">
     <mat-card-content class="cart-container" *ngIf="cart.length > 0">
       <button mat-button routerLink="/orders">
@@ -86,5 +52,4 @@
       <button mat-button color="warn" (click)="clearCart()">Очистити корзину</button>
     </mat-card-content>
   </div>
-
 </body>
