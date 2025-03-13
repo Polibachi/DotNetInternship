@@ -7,21 +7,33 @@
     <div *ngIf="registerForm.submitted && !user.email" class="error">Введіть Email</div>
 
     <label for="password">Пароль:</label>
-    <input type="password" id="password" [(ngModel)]="user.password" name="password" required />
+    <div class="password-field">
+      <input [type]="showPassword ? 'text' : 'password'"
+             id="password"
+             [(ngModel)]="user.password"
+             name="password"
+             required>
+      <button type="button" (click)="togglePasswordVisibility()" class="toggle-password">
+        <span *ngIf="showPassword">👁️</span>
+        <span *ngIf="!showPassword">👁️‍🗨️</span>
+      </button>
+    </div>
     <div *ngIf="registerForm.submitted && !user.password" class="error">Введіть пароль</div>
 
     <label for="name">Ім'я:</label>
     <input type="text" id="name" [(ngModel)]="user.name" name="name" required />
     <div *ngIf="registerForm.submitted && !user.name" class="error">Введіть ім'я</div>
 
-    <label for="role">Роль:</label>
-    <select id="role" [(ngModel)]="user.role" name="role" required>
-      <option value="">Оберіть роль</option>
-      <option value="staff">Офіціант</option>
-      <option value="chef">Кухар</option>
-      <option value="admin">Адміністратор</option>
-    </select>
-    <div *ngIf="registerForm.submitted && !user.role" class="error">Оберіть роль</div>
+    <div class="role-container">
+      <label for="role">Роль:</label>
+      <select id="role" [(ngModel)]="user.role" name="role" required>
+        <option value="">Оберіть роль</option>
+        <option value="staff">Офіціант</option>
+        <option value="chef">Кухар</option>
+        <option value="admin">Адміністратор</option>
+      </select>
+      <div *ngIf="registerForm.submitted && !user.role" class="error">Оберіть роль</div>
+    </div>
 
     <button type="submit">Зареєструватися</button>
 

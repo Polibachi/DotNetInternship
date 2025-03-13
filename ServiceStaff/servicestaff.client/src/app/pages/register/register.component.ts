@@ -14,6 +14,11 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent {
   user = { email: '', password: '', name: '', role: '' }; // 🔹 Змінив username → email
   errorMessage: string = '';
+  showPassword = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
   constructor(private authService: AuthService, private router: Router) { }
 
