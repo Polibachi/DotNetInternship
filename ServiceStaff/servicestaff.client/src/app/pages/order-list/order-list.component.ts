@@ -12,7 +12,7 @@ import { Order, OrderItem } from '../../models/order.model';
   standalone: true,
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.css'],
-  imports: [CommonModule, MatCardModule, FormsModule, OrderItemComponent, MatCheckboxModule]
+  imports: [CommonModule, MatCardModule, FormsModule, MatCheckboxModule]
 })
 export class OrderListComponent {
   @Input() orders: any[] = [];  // Масив замовлень

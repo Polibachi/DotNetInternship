@@ -10,7 +10,7 @@ import { HeaderComponent } from '../header/header.component';
   standalone: true,
   templateUrl: './waiter.component.html',
   styleUrls: ['./waiter.component.css'],
-  imports: [CommonModule, OrderListComponent, HeaderComponent]
+  imports: [CommonModule, OrderListComponent]
 })
 export class WaiterComponent {
   orders: any[] = [];

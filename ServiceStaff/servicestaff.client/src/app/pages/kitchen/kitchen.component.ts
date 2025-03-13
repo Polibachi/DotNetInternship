@@ -9,7 +9,7 @@ import { OrderListComponent } from '../order-list/order-list.component';
 import { SignalrService } from '../../services/signalr.service';
 import { OrderService } from '../../services/order.service';
 import { Observable } from 'rxjs';
-import { HeaderComponent } from '../header/header.component'; // Імпортуємо HeaderComponent
+
 
 @Component({
   selector: 'app-kitchen',
@@ -24,7 +24,7 @@ import { HeaderComponent } from '../header/header.component'; // Імпорту�
     MatButtonModule,
     MatIconModule,
     RouterModule, // Додаємо для маршрутизації
-    HeaderComponent // Додаємо HeaderComponent в imports
+   
   ]
 })
 export class KitchenComponent {
