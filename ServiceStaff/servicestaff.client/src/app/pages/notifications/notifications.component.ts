@@ -30,8 +30,7 @@ export class NotificationsComponent {
     // Отримуємо поточний маршрут
     const currentRoute = this.router.url;
 
-    // Показуємо snackbar тільки на сторінках /orders і /kitchen
-    if (currentRoute.includes('/orders') || currentRoute.includes('/kitchen')) {
+    if (!currentRoute.includes('/waiter') && !currentRoute.includes('/kitchen')) {
       this.showNotification(message);
     }
   }

@@ -38,6 +38,8 @@ export class SignalrService {
       .catch((err) => console.error('Error while starting SignalR:', err));
 
     this.hubConnection.on('ReceiveNotification', (message: string) => {
+      console.log(message);
+
       const currentNotifications = this.notificationsSubject.value;
       this.notificationsSubject.next([...currentNotifications, message]);
       this.showNotification(message);
@@ -46,19 +48,34 @@ export class SignalrService {
   }
 
   refreshPage(): void {
-    window.location.reload();
-  }
-
-
-  public showNotification(message: string) {  // ✅ Було private → стало public
-    console.log("New notification!");
-    console.log(message);
-    if (this.allowedRoutes.includes(this.currentRoute)) { // ✅ Перевірка маршруту
-      this.snackBar.open(message, 'Закрити', {
-        duration: 5000,
-        verticalPosition: 'bottom',
-        horizontalPosition: 'center',
-      });
+    if (this.allowedRoutes.includes(this.currentRoute)) {  // Перевірка на дозволений маршрут
+      //window.location.reload();
     }
   }
+
+public showNotification(message: any) {
+    console.log("New notification!");
+    //console.log("Current Route: ", this.currentRoute);
+
+    // Перевірка, чи є в об'єкті message поля orderId та statusMessage
+    if (message?.id && message?.status) {
+      const notificationText = `Замовлення #${message.id} ${message.status}!`;
+
+      if (!this.allowedRoutes.includes(this.currentRoute)) {
+        this.snackBar.open(notificationText, 'Перейти', {
+          duration: 5000, // Додаємо тривалість для автоматичного закриття
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center',
+        }).onAction().subscribe(() => {
+          // Тут буде дія при натисканні на кнопку
+          this.router.navigate(['/home']); // Приклад переходу до сторінки з деталями замовлення
+        });
+      }
+    } else {
+      console.error("Недостатньо даних у повідомленні");
+    }
+  }
+
+
+
 }

@@ -99,7 +99,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowAngular");
-
+app.UseStaticFiles();
 app.MapHub<OrderNotificationHub>("/orderHub");
 // Додаємо аутентифікацію
 app.UseAuthentication();
