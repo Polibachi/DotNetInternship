@@ -49,7 +49,7 @@ export class SignalrService {
 
   refreshPage(): void {
     if (this.allowedRoutes.includes(this.currentRoute)) {  // Перевірка на дозволений маршрут
-      //window.location.reload();
+      window.location.reload();
     }
   }
 
@@ -63,7 +63,6 @@ public showNotification(message: any) {
 
       if (!this.allowedRoutes.includes(this.currentRoute)) {
         this.snackBar.open(notificationText, 'Перейти', {
-          duration: 5000, // Додаємо тривалість для автоматичного закриття
           verticalPosition: 'bottom',
           horizontalPosition: 'center',
         }).onAction().subscribe(() => {
