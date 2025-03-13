@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using ServiceStaff.Server.Services;
 using ServiceStaff.Server.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -14,6 +13,7 @@ public class DishController : ControllerBase
         _dishService = dishService;
     }
 
+    [Authorize]
     [HttpPost("add")]
     public async Task<IActionResult> AddDish([FromBody] DishDto dishDto)
     {
@@ -21,6 +21,7 @@ public class DishController : ControllerBase
         return Ok(result);
     }
 
+    [AllowAnonymous]
     [HttpGet("{dishId}")]
     public async Task<IActionResult> GetDishById(int dishId)
     {
@@ -31,4 +32,13 @@ public class DishController : ControllerBase
         }
         return Ok(dish);
     }
+
+    [AllowAnonymous]
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAllDishes()
+    {
+        var dishes = await _dishService.GetAllDishesAsync();
+        return Ok(dishes);
+    }
+
 }

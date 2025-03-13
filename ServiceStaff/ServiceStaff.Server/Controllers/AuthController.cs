@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using ServiceStaff.Server.DTO;
 using ServiceStaff.Server.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ServiceStaff.Server.Controllers
 {
@@ -17,17 +18,19 @@ namespace ServiceStaff.Server.Controllers
             _userService = userService;
         }
 
+        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
-            if (_userService.UserExists(registerDto.Username))
+            if (_userService.UserExists(registerDto.Email))  // ✅ Перевіряємо Email
             {
-                return Conflict(new { message = "Username already exists" });
+                return Conflict(new { message = "Email already exists" });
             }
             var result = await _userService.RegisterAsync(registerDto);
-            return Ok(result);
+            return Ok(new { message = result });
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {

@@ -1,0 +1,280 @@
+/*body {
+  background-color: gainsboro;*/ /* замініть на будь-який бажаний колір */
+  /*margin: 0;
+  padding: 0;
+  height: 100%;
+}*/
+
+/* Фон для контейнера з стравами */
+/*.dishes-container {
+  background-color: gainsboro;*/ /* змініть на потрібний колір */
+  /*min-height: 100vh;*/ /* забезпечить, що контейнер покриє всю висоту сторінки */
+  /*padding: 20px;
+}*/
+
+/* Фон для карток і інших елементів, якщо потрібно */
+/*.dish-card {
+  background-color: gainsboro;
+  margin-bottom: 10px;
+}*/
+
+/* Стили для корзини */
+/*.cart-container {
+  background-color: #eeeeee;*/ /* фон для картки корзини */
+  /*padding: 20px;
+  border-radius: 5px;
+}*/
+
+
+
+
+
+
+.no-select {
+  cursor: pointer;
+  user-select: none;
+}
+
+
+
+.header {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  padding: 10px 0;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+mat-toolbar {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+  mat-toolbar button[mat-icon-button] {
+    color: #fff;
+  }
+
+  mat-toolbar .toolbar {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+  }
+
+.example-spacer {
+  flex-grow: 1;
+}
+
+/* Стилізація меню */
+mat-menu {
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+  mat-menu button[mat-menu-item] {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    transition: background 0.3s ease-in-out;
+  }
+
+    mat-menu button[mat-menu-item]:hover {
+      background: rgba(79, 172, 254, 0.1);
+    }
+
+/* Іконки */
+mat-icon {
+  color: #4facfe;
+}
+
+mat-toolbar button mat-icon {
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: gainsboro;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  flex-grow: 1;
+}
+
+.dishes-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  padding: 20px 40px;
+  justify-content: center;
+  background-color: gainsboro;
+}
+
+.dish-card,
+.add-dish-icon {
+  display: flex;
+  background-color: gainsboro;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 320px;
+  height: 100%;
+  box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
+  overflow: hidden;
+  padding: 16px;
+  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+  .dish-card:hover,
+  .add-dish-icon:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.15);
+  }
+
+  .dish-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+mat-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+mat-card-content {
+  flex-grow: 1;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+  padding: 10px 0;
+}
+
+mat-card-subtitle {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+  mat-card-actions button {
+    width: 100%;
+    max-width: 180px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+    mat-card-actions button:hover {
+      transform: scale(1.05);
+    }
+
+.add-dish-icon mat-card-title {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.add-dish-icon mat-card-content {
+  flex-grow: 1;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.add-dish-icon mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
+.add-dish-icon button mat-icon {
+  font-size: 24px;
+  margin-right: 8px;
+}
+
+/* Стилізація корзини */
+.cart-container {
+
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+  box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.12);
+  border-radius: 14px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+  .cart-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.15);
+  }
+
+  .cart-container h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .cart-container mat-list {
+    padding: 0;
+  }
+
+  .cart-container mat-list-item {
+    font-size: 16px;
+    color: #444;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+    .cart-container mat-list-item:last-child {
+      border-bottom: none;
+    }
+
+  .cart-container button {
+    width: 100%;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+    .cart-container button:hover {
+      transform: scale(1.05);
+    }
+.floor {
+  background-color: gainsboro;
+}

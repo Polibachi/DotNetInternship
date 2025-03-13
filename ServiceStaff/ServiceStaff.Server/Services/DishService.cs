@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using ServiceStaff.Server.Data;
+﻿using ServiceStaff.Server.Data;
 using ServiceStaff.Server.DTO;
 using ServiceStaff.Server.Models;
-
+using Microsoft.EntityFrameworkCore;
 namespace ServiceStaff.Server.Services
 {
     public class DishService : IDishService
@@ -38,10 +37,27 @@ namespace ServiceStaff.Server.Services
 
             return new DishDto
             {
+                Id = dish.Id,
                 Name = dish.Name,
                 Price = dish.Price,
                 Description = dish.Description
             };
         }
+
+        public async Task<List<DishDto>> GetAllDishesAsync()
+        {
+            var dishes = await _context.Dishes.ToListAsync();
+
+            return dishes.Select(dish => new DishDto
+            {
+                Id = dish.Id,
+                Name = dish.Name,
+                Price = dish.Price,
+                Description = dish.Description
+            }).ToList();
+        }
+
     }
+
+
 }

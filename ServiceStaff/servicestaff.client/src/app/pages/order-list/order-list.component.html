@@ -1,1 +1,19 @@
-<p>order-list works!</p>
+<mat-card *ngFor="let order of orders">
+  <h3>Замовлення #{{ order.id }}</h3>
+  <p>Час створення: {{ order.createdAt | date:'short' }}</p>
+  <p *ngIf="order.comment">Коментар: {{ order.comment }}</p>
+
+  <div *ngIf="order.orderItems.length > 0">
+    <h4>Страви:</h4>
+    <ul>
+      <li *ngFor="let item of order.orderItems">
+        {{ item.dishName }} - Кількість: {{ item.quantity }}
+        <mat-checkbox [(ngModel)]="item.isChecked"
+                      (change)="saveCheckboxState(order.id, item.dishName, item.isChecked)">
+        </mat-checkbox>
+      </li>
+    </ul>
+  </div>
+
+  <button mat-button (click)="CompleteOrder(order)">Завершити замовлення</button>
+</mat-card>

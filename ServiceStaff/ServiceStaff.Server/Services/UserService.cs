@@ -25,7 +25,7 @@ namespace ServiceStaff.Server.Services
         {
             var user = new User
             {
-                Email = registerDto.Username,
+                Email = registerDto.Email,
                 Password = registerDto.Password,
                 Name = registerDto.Name,
                 Role = registerDto.Role
@@ -39,17 +39,19 @@ namespace ServiceStaff.Server.Services
         public async Task<string> LoginAsync(LoginDto loginDto)
         {
             var user = await _context.Users
-                .FirstOrDefaultAsync(u => u.Email == loginDto.Username && u.Password == loginDto.Password);
+                .FirstOrDefaultAsync(u => u.Email == loginDto.Email && u.Password == loginDto.Password);
+
             if (user == null) return "Invalid credentials";
 
             var token = GenerateJwtToken(user);
             return token;
         }
 
-        public bool UserExists(string username)
+        public bool UserExists(string email)
         {
-            return _context.Users.Any(u => u.Email == username);
+            return _context.Users.Any(u => u.Email == email);  // ✅ Перевіряємо Email замість Username
         }
+
 
         private string GenerateJwtToken(User user)
         {
@@ -57,7 +59,7 @@ namespace ServiceStaff.Server.Services
             var key = Encoding.ASCII.GetBytes("kluch_yakiy_bude_dostatnyo_dovhim");
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()), new Claim(ClaimTypes.Role, user.Role.ToString()) }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

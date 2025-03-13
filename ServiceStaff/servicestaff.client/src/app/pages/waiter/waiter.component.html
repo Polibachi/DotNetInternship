@@ -1,0 +1,10 @@
+
+
+
+<div class="waiter-container">
+  <h2>Офіціанти</h2>
+  <app-order-list [orders]="orders" [status]="'Paid'" (orderServed)="markServed($event)"></app-order-list>
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="GetOrders()">Отримати замовлення</button>
+  </div>
+</div>

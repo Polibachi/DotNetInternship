@@ -2,27 +2,66 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { RouterModule } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
-  standalone: true,  // ✅ Standalone-компонент
+  standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [CommonModule, FormsModule]  // ✅ Додаємо необхідні модулі
+  imports: [CommonModule, FormsModule, RouterModule]
 })
 export class LoginComponent {
-  username: string = '';
+  email: string = '';
   password: string = '';
+  showPassword: boolean = false; // Контролює видимість пароля
+  errorMessage: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
+
+  // Перемикає видимість пароля
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
   login() {
-    if (this.username === 'waiter') {
-      this.router.navigate(['/orders']); // Перехід на сторінку замовлень
-    } else if (this.username === 'chef') {
-      this.router.navigate(['/kitchen']); // Перехід на сторінку кухні
-    } else {
-      alert('Неправильний логін або пароль');
-    }
+    const credentials = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.authService.login(credentials).subscribe({
+      next: (res) => {
+        console.log('Login successful:', res);
+        localStorage.setItem('token', res.token);
+        const decodedToken: any = jwtDecode(res.token);
+        console.log('Розкодований токен:', decodedToken);
+
+        // Використовуємо роль із токена
+        localStorage.setItem('role', decodedToken.role);
+
+        switch (decodedToken.role) {
+          case 'staff':
+            this.router.navigate(['/menu']);
+            break;
+          case 'chef':
+            this.router.navigate(['/kitchen']);
+            break;
+          case 'admin':
+            this.router.navigate(['/menu']);
+            break;
+          default:
+            this.router.navigate(['/home']);
+            break;
+        }
+      },
+      error: (err) => {
+        console.error('Login failed', err);
+        this.errorMessage = 'Неправильний email або пароль';
+      }
+    });
   }
 }
+

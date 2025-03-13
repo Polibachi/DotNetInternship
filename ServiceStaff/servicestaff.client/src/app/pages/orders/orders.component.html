@@ -1,7 +1,78 @@
-<div class="orders-container">
-  <h2>Замовлення</h2>
-  <input type="text" placeholder="Назва страви" [(ngModel)]="newDish">
-  <button (click)="addOrder()">Додати</button>
+<header>
+  <div class="header">
+    <mat-toolbar>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/menu">
+          <mat-icon>menu</mat-icon>
+          <span>Меню</span>
+        </button>
+        <button mat-menu-item routerLink="/waiter">
+          <mat-icon>food_bank</mat-icon>
+          <span>Мої замовлення</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>data_thresholding</mat-icon>
+          <span>Адмінка</span>
+        </button>
+        <button mat-menu-item (click)="logOut()">
+          <mat-icon>logout</mat-icon>
+          <span>Вийти</span>
+        </button>
+      </mat-menu>
+      <div class="toolbar no-select">
+        <span style="margin-right: 10px;">🍽 Service Staff</span>
+      </div>
+      <span class="example-spacer"></span>
+    </mat-toolbar>
+  </div>
+</header>
 
-  <app-order-list [orders]="orders"></app-order-list>
-</div>
+<mat-card class="orders-container">
+  <h2>Замовлення</h2>
+  <h3>Номер столу</h3>
+  <mat-form-field>
+    <input matInput
+           placeholder="Номер столу"
+           type="number"
+           [(ngModel)]="newOrder.tableNumber">
+  </mat-form-field>
+
+  <h3>Коментар</h3>
+  <mat-form-field>
+    <textarea matInput
+              placeholder="Напишіть коментар"
+              [(ngModel)]="newOrder.comment">
+  </textarea>
+  </mat-form-field>
+
+  <!-- Картки страв -->
+  <div class="dishes-container">
+    <mat-card class="dish-card" *ngFor="let dish of dishes">
+      <mat-card-header>
+        <mat-card-title>{{ dish.name }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ dish.description }}</p>
+      </mat-card-content>
+      <mat-card-subtitle>{{ dish.price }} UAH</mat-card-subtitle>
+    </mat-card>
+  </div>
+
+  <!-- Блок для загальної суми -->
+  <div class="total-price-container">
+    <h3>Загальна сума до оплати</h3>
+    <p>{{ totalPrice }} UAH</p>
+  </div>
+
+  <!-- Кнопка для додавання замовлення -->
+  <div class="button-container">
+    <button mat-raised-button
+            color="accent"
+            (click)="addOrder()">
+      Додати замовлення
+    </button>
+  </div>
+</mat-card>
