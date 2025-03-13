@@ -25,7 +25,7 @@ export class AuthService {
   logOut() {
     localStorage.removeItem('role');
     localStorage.removeItem('token');
-    window.location.reload();
+    
    
   }
 

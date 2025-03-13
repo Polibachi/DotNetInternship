@@ -43,6 +43,7 @@ export class HeaderComponent implements OnInit {
     if (token) {
       const decodedToken: any = jwtDecode(token);
       this.userRole = decodedToken.role;
+      
     }
   }
 

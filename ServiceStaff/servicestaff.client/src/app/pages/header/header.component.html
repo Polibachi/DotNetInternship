@@ -21,15 +21,23 @@
           <mat-icon>star</mat-icon>
           <span>{{ getButtonLabel() }}</span>
         </button>
-        <button mat-menu-item (click)="logOut()">
+        <button mat-menu-item (click)="logOut()" >
           <mat-icon>logout</mat-icon>
           <span>Вийти</span>
         </button>
       </mat-menu>
+
       <div class="toolbar no-select">
-        <span style="margin-right: 10px;">🍽 Service Staff</span>
+        <span class="logo">🍽 Service Staff</span>
       </div>
+
       <span class="example-spacer"></span>
+
+      <!-- Відображення ролі -->
+      <div class="user-role">
+        <mat-icon>person</mat-icon>
+        <span>{{ userRole | uppercase }}</span>
+      </div>
     </mat-toolbar>
   </div>
 </header>
