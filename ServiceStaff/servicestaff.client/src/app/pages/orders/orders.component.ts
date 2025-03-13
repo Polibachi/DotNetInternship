@@ -98,7 +98,6 @@ export class OrdersComponent implements OnInit {
       this.orders.push(order);
       this.signalrService.showNotification(`Замовлення #${order.id} додано!`);
     });
-
     this.clearCart();
   }
 
